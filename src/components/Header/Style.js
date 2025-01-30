@@ -6,7 +6,6 @@ export const Top = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
 `;
 
 export const Navbar = styled.nav`
@@ -58,22 +57,31 @@ export const AuthLinks = styled.div`
     align-items: center;
     gap: 15px;
 
-    .search-icon {
+    .search-icon, .close-icon {
         font-size: 20px;
         cursor: pointer;
         color: #fff;
-    }
-
-    a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
+        transition: color 0.3s ease, transform 0.2s ease;
 
         &:hover {
             color: #ffcc00;
+            transform: scale(1.1);
+        }
+    }
+
+    svg {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
         }
     }
 `;
+
 
 export const MenuToggle = styled.div`
     display: none;
@@ -93,11 +101,12 @@ export const NewsBar = styled.div`
     background: #333;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding: 0 20px; /* Adiciona um espaçamento na esquerda */
     font-size: 14px;
     font-weight: bold;
     color: white;
     position: relative;
+    justify-content: center;
 
     &::after {
         content: "";
@@ -110,8 +119,8 @@ export const NewsBar = styled.div`
 
     .categories-container {
         display: flex;
-        gap: 30px; /* Espaçamento entre os itens */
-        justify-content: center;
+        gap: 20px;
+        justify-content: flex-start; /* Alinha à esquerda */
         width: 100%;
         max-width: 1200px;
     }
@@ -124,5 +133,40 @@ export const NewsBar = styled.div`
         &:hover {
             text-decoration: underline;
         }
+    }
+`;
+
+export const SearchBarContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #8b0000; /* Vermelho escuro */
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 10px 15px;
+    width: 400px;
+    margin: 10px auto;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+`;
+
+export const SearchInput = styled.input`
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px;
+
+    &::placeholder {
+        color: white;
+        opacity: 0.7;
     }
 `;
