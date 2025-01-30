@@ -6,6 +6,7 @@ export const Top = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 `;
 
 export const Navbar = styled.nav`
@@ -13,7 +14,7 @@ export const Navbar = styled.nav`
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1440px;
 `;
 
 export const Logo = styled.div`
@@ -122,7 +123,8 @@ export const NewsBar = styled.div`
         gap: 20px;
         justify-content: flex-start; /* Alinha à esquerda */
         width: 100%;
-        max-width: 1200px;
+        max-width: 1440px;
+        text-transform: uppercase;
     }
 
     a {
@@ -140,17 +142,16 @@ export const SearchBarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #8b0000; /* Vermelho escuro */
+    background: #8b0000;
     border: 2px solid white;
     border-radius: 25px;
     padding: 10px 15px;
     width: 400px;
     margin: 10px auto;
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    
+    top: 0;
+    left: 0;
+    position: relative;
+
     @media (max-width: 768px) {
         width: 80%;
     }
@@ -169,4 +170,11 @@ export const SearchInput = styled.input`
         color: white;
         opacity: 0.7;
     }
+`;
+
+export const Navegacao = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 `;

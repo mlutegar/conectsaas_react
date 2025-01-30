@@ -1,37 +1,22 @@
-
 import React from "react";
-import { createRoot } from "react-dom/client";
+import {createRoot} from "react-dom/client";
 
 import Home from "./pages/Home";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import Fotos from "./pages/Fotos";
-import Login from "./pages/Login";
+import {HashRouter, Route, Routes} from "react-router-dom";
+import Post from "./pages/Post";
 import Logout from "./pages/Logout";
-import { auth } from "./config/Firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import Atletas from "./pages/Atletas";
+import Search from "./pages/Search";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-onAuthStateChanged(auth, (user)=> {
-  if (user) {
-    window.sessionStorage.setItem("accessToken", user.accessToken);
-  } else {
-    window.sessionStorage.removeItem("accessToken");
-  }
-});
-
-root.render(
-  <React.StrictMode>
+root.render(<React.StrictMode>
     <HashRouter>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/fotos" element={<Fotos/>} />
-        <Route path="/atletas" element={<Atletas/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/logout" element={<Logout/>} />
-      </Routes>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/post/:slug" element={<Post />} />
+            <Route path="/search/:query" element={<Search />} />
+            <Route path="/logout" element={<Logout />} />
+        </Routes>
     </HashRouter>
-  </React.StrictMode>
-);
+</React.StrictMode>);

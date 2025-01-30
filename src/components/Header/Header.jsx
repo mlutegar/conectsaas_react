@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaSearch, FaTimes } from "react-icons/fa"; // Ícones de busca e fechar
-import { Top, Navbar, Logo, AuthLinks, NewsBar, SearchBarContainer, SearchInput } from "./Style";
-import {SvgLogo, SvgLupa, SvgMenu} from "../Svgs/Svgs";
+import {useState, useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {FaSearch, FaTimes} from "react-icons/fa"; // Ícones de busca e fechar
+import {Top, Navbar, Logo, AuthLinks, NewsBar, SearchBarContainer, SearchInput, Navegacao} from "./Style";
+import {SvgClose, SvgLogo, SvgLupa, SvgMenu} from "../Svgs/Svgs";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [categories, setCategories] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate(); // Usado para redirecionamento
 
-    // Buscar categorias da API do WordPress
+    const handleSearch = () => {
+        if (searchQuery.trim() !== "") {
+            navigate(`/search/${searchQuery}`);
+        }
+    };
+
     useEffect(() => {
         fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories")
             .then((response) => response.json())
@@ -18,56 +24,49 @@ const Header = () => {
             .catch((error) => console.error("Erro ao buscar categorias:", error));
     }, []);
 
-    return (
-        <>
-            <Top>
-                <Navbar>
-                    <Logo>
-                        <Link to="/">
-                            <SvgLogo />
-                        </Link>
-                    </Logo>
+    return (<>
+        <Top>
+            <Navbar>
+                <Logo>
+                    <Link to="/">
+                        <SvgLogo/>
+                    </Link>
+                </Logo>
 
-                    <AuthLinks>
-                        {/* Ícone da Lupa para abrir a Search Bar */}
-                        {searchOpen ? (
-                            <SvgLupa className="search-icon" onClick={() => setSearchOpen(false)} />
-                        ) : (
-                            <SvgLupa className="search-icon" onClick={() => setSearchOpen(true)} />
-                        )}
-                        <SvgMenu />
-                    </AuthLinks>
-                </Navbar>
-
-                {/* Barra de Pesquisa (Exibe quando searchOpen for true) */}
-                {searchOpen && (
-                    <SearchBarContainer>
+                <Navegacao>
+                    {searchOpen && (<SearchBarContainer>
                         <SearchInput
                             type="text"
                             placeholder="Digite sua busca..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyPress={(e) => e.key === "Enter" && handleSearch()} // Permite pesquisar ao pressionar Enter
                         />
-                        <FaSearch className="search-icon" />
-                        <FaTimes className="close-icon" onClick={() => setSearchOpen(false)} />
-                    </SearchBarContainer>
-                )}
-            </Top>
+                        <FaSearch className="search-icon" onClick={handleSearch}/>
+                        <FaTimes className="close-icon" onClick={() => setSearchQuery("")}/>
+                    </SearchBarContainer>)}
 
-            {/* Barra de Categorias */}
-            <NewsBar>
-                <div className="categories-container">
-                    <Link to="/">INÍCIO</Link>
-                    {categories.length > 0 &&
-                        categories.map((category, index) => (
-                            <Link key={index} to={`/categoria/${category.slug}`}>
-                                {category.name}
-                            </Link>
-                        ))}
-                </div>
-            </NewsBar>
-        </>
-    );
+                    <AuthLinks>
+                        {/* Ícone da Lupa para abrir a Search Bar */}
+                        {searchOpen ? (<SvgClose className="search-icon" onClick={() => setSearchOpen(false)}/>) : (
+                            <SvgLupa className="search-icon" onClick={() => setSearchOpen(true)}/>)}
+                        <SvgMenu/>
+                    </AuthLinks>
+                </Navegacao>
+            </Navbar>
+        </Top>
+
+        {/* Barra de Categorias */}
+        <NewsBar>
+            <div className="categories-container">
+                <Link to="/">INÍCIO</Link>
+                {categories.length > 0 && categories.map((category, index) => (
+                    <Link key={index} to={`/categoria/${category.slug}`}>
+                        {category.name}
+                    </Link>))}
+            </div>
+        </NewsBar>
+    </>);
 };
 
 export default Header;

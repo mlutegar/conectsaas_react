@@ -13,7 +13,7 @@ export const SvgLogo = () => (
     </svg>
 );
 
-export const SvgLupa = ({ onClick }) => (
+export const SvgLupa = ({onClick}) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40"
@@ -21,7 +21,7 @@ export const SvgLupa = ({ onClick }) => (
         viewBox="0 0 40 38"
         fill="none"
         onClick={onClick} /* Adiciona suporte ao evento */
-        style={{ cursor: "pointer" }} /* Indica que é clicável */
+        style={{cursor: "pointer"}} /* Indica que é clicável */
     >
         <path
             d="M26.3258 25.0342L35 33.25M30 16.625C30 23.1833 24.4035 28.5 17.5 28.5C10.5964 28.5 5 23.1833 5 16.625C5 10.0666 10.5964 4.75 17.5 4.75C24.4035 4.75 30 10.0666 30 16.625Z"
@@ -37,3 +37,12 @@ export const SvgMenu = () => (
         <line y1="17" x2="40" y2="17" stroke="white" strokeWidth="2"/>
     </svg>
 )
+
+export const SvgClose = ({onClick}) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none" onClick={onClick}>
+        <path d="M1.63965 20.1726L20.3596 1.45264" stroke="white" strokeWidth="1.5" strokeLinecap="round"
+              strokeLinejoin="round"/>
+        <path d="M1.63965 1.45264L20.3596 20.1726" stroke="white" strokeWidth="1.5" strokeLinecap="round"
+              strokeLinejoin="round"/>
+    </svg>
+);

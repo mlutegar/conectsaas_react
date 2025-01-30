@@ -6,7 +6,7 @@ export const BannerContainer = styled.section`
   gap: 20px;
   padding: 20px;
   background: white;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: auto;
 `;
 
