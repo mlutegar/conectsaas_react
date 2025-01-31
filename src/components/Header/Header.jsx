@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch, FaTimes } from "react-icons/fa";
 import { Top, Navbar, Logo, AuthLinks, NewsBar, SearchBarContainer, SearchInput, Navegacao } from "./Style";
 import { SvgClose, SvgLogo, SvgLupa, SvgMenu } from "../Svgs/Svgs";
 import OpenMenu from "../OpenMenu/OpenMenu"; // Importando o menu aberto
@@ -36,27 +35,28 @@ const Header = () => {
                     </Logo>
 
                     <Navegacao>
-                        {searchOpen && (
-                            <SearchBarContainer>
-                                <SearchInput
-                                    type="text"
-                                    placeholder="Digite sua busca..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-                                />
-                                <FaSearch className="search-icon" onClick={handleSearch} />
-                                <FaTimes className="close-icon" onClick={() => setSearchQuery("")} />
-                            </SearchBarContainer>
-                        )}
+                        <SearchBarContainer isOpen={searchOpen}>
+                            <SearchInput
+                                type="text"
+                                placeholder="Digite sua busca..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                                isOpen={searchOpen}
+                            />
+                            <SvgLupa className="search-icon" onClick={handleSearch} />
+                        </SearchBarContainer>
 
                         <AuthLinks>
                             {searchOpen ? (
                                 <SvgClose className="search-icon" onClick={() => setSearchOpen(false)} />
                             ) : (
-                                <SvgLupa className="search-icon" onClick={() => setSearchOpen(true)} />
+                                <SvgLupa className="search-icon" onClick={() => setSearchOpen(prev => !prev)} />
                             )}
-                            <SvgMenu className="menu-icon" onClick={() => setMenuOpen(true)} />
+                            <SvgMenu className="menu-icon" onClick={() => {
+                                setMenuOpen(true);
+                                setSearchQuery("");
+                            }} />
                         </AuthLinks>
                     </Navegacao>
                 </Navbar>
@@ -68,7 +68,7 @@ const Header = () => {
                     <Link to="/">INÍCIO</Link>
                     {categories.length > 0 &&
                         categories.map((category, index) => (
-                            <Link key={index} to={`/categoria/${category.slug}`}>
+                            <Link key={category.id} to={`/categoria/${category.slug}`}>
                                 {category.name}
                             </Link>
                         ))}

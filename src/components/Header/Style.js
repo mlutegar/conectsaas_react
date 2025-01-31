@@ -7,6 +7,12 @@ export const Top = styled.header`
     align-items: center;
     justify-content: center;
     position: relative;
+    
+    @media (max-width: 768px) {
+        position: fixed;
+        width: 100%;
+        box-sizing: border-box;
+    }
 `;
 
 export const Navbar = styled.nav`
@@ -81,6 +87,17 @@ export const AuthLinks = styled.div`
             transform: scale(1.1);
         }
     }
+
+    @media (max-width: 768px) {
+        .search-icon, .close-icon {
+            font-size: 26px; /* Ícones maiores */
+        }
+
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
 `;
 
 
@@ -149,37 +166,63 @@ export const SearchBarContainer = styled.div`
     background: #8b0000;
     border: 2px solid white;
     border-radius: 25px;
-    padding: 10px 15px;
-    width: 400px;
     margin: 10px auto;
-    top: 0;
-    left: 0;
-    position: relative;
+    position: absolute;
+    width: ${props => props.isOpen ? "22.125rem" : "0"};
+    height: 2.375rem;
+    top: -17px;
+    left: ${props => props.isOpen ? "-594%" : "0"};
+    opacity: ${props => props.isOpen ? 1 : 0};
+    visibility: ${props => props.isOpen ? "visible" : "hidden"};
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+
+    svg {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: color 0.3s ease, transform 0.2s ease;
+        position: relative;
+        right: 17px;
+        opacity: ${props => props.isOpen ? 1 : 0};
+        transition: opacity 0.2s ease-in-out;
+
+        &:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+    }
 
     @media (max-width: 768px) {
-        width: 100%;
+        width: ${props => props.isOpen ? "100%" : "0"};
         max-width: none;
-        position: absolute;
-        top: 100%; /* Para aparecer abaixo do Navbar */
+        position: fixed;
+        box-sizing: border-box;
+        top: 78px;
         left: 0;
         border-radius: 0;
-        padding: 12px;
+        padding: 11px;
+        border: none;
+        background: black;
     }
 `;
-
 
 export const SearchInput = styled.input`
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 0.75rem;
+    opacity: ${props => props.isOpen ? 1 : 0};
+    transition: opacity 0.2s ease-in-out;
     color: white;
-    font-size: 16px;
-    padding: 5px;
 
     &::placeholder {
         color: white;
-        opacity: 0.7;
     }
 `;
 
@@ -188,7 +231,7 @@ export const Navegacao = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
-    
+
     @media (max-width: 768px) {
         position: static;
     }

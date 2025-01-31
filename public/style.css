@@ -40,6 +40,10 @@ a {
 
 div.container {
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    padding-top: 5rem;
+  }
 }
 
 h1,h2,h3,h4,h5,h6{

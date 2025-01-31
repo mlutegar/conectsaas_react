@@ -7,7 +7,6 @@ const OpenMenu = ({ isOpen, onClose }) => {
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
 
-    // Buscar categorias e autores da API
     useEffect(() => {
         fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories")
             .then((response) => response.json())
@@ -20,36 +19,35 @@ const OpenMenu = ({ isOpen, onClose }) => {
             .catch((error) => console.error("Erro ao buscar autores:", error));
     }, []);
 
-    if (!isOpen) return null;
-
     return (
-        <MenuOverlay>
-            <MenuContainer>
+        <MenuOverlay isOpen={isOpen} onClick={onClose}>
+            <MenuContainer isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
                 <CloseButton onClick={onClose}>
-                    <SvgClose/>
+                    <SvgClose />
                 </CloseButton>
 
                 <MenuList>
                     <Link to="/" onClick={onClose}>INÍCIO</Link>
 
-                    {categories.length > 0 && categories.map((category) => (
-                        <Link key={category.id} to={`/categoria/${category.slug}`} onClick={onClose}>
-                            {category.name.toUpperCase()}
-                        </Link>
-                    ))}
+                    {categories.length > 0 &&
+                        categories.map((category) => (
+                            <Link key={category.id} to={`/categoria/${category.slug}`} onClick={onClose}>
+                                {category.name.toUpperCase()}
+                            </Link>
+                        ))}
                 </MenuList>
 
-                <hr/>
+                <hr />
 
                 <SocialIcons>
                     <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                        <SvgTwitter/>
+                        <SvgTwitter />
                     </a>
                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <SvgInstagram/>
+                        <SvgInstagram />
                     </a>
                     <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                        <SvgLinkedin/>
+                        <SvgLinkedin />
                     </a>
                 </SocialIcons>
             </MenuContainer>

@@ -11,21 +11,30 @@ export const MenuOverlay = styled.div`
     justify-content: flex-end;
     align-items: flex-start;
     z-index: 999;
+
+    opacity: ${({ isOpen }) => (isOpen ? "1" : "0")}; /* Transição de opacidade */
+    pointer-events: ${({ isOpen }) => (isOpen ? "all" : "none")}; /* Impede cliques quando fechado */
+    transition: opacity 0.4s ease-in-out;
 `;
+
 
 export const MenuContainer = styled.div`
     background: #8b0000;
     color: white;
     width: 90%;
     max-width: 400px;
-    padding: 2.94rem; /* Adiciona espaço interno */
+    padding: 2.94rem;
     border-radius: 15px 0 0 15px;
-    text-align: center;
     text-align: center;
     position: relative;
     height: 100%;
     padding-top: 3.5rem;
+
+    transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(100%)")}; /* Efeito de entrada */
+    transition: transform 0.4s ease-in-out;
 `;
+
+
 
 export const CloseButton = styled.button`
     position: absolute;
