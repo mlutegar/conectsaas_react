@@ -157,9 +157,16 @@ export const SearchBarContainer = styled.div`
     position: relative;
 
     @media (max-width: 768px) {
-        width: 80%;
+        width: 100%;
+        max-width: none;
+        position: absolute;
+        top: 100%; /* Para aparecer abaixo do Navbar */
+        left: 0;
+        border-radius: 0;
+        padding: 12px;
     }
 `;
+
 
 export const SearchInput = styled.input`
     flex: 1;
@@ -181,4 +188,8 @@ export const Navegacao = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
+    
+    @media (max-width: 768px) {
+        position: static;
+    }
 `;

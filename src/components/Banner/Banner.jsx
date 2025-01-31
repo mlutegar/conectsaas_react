@@ -14,7 +14,7 @@ const Banner = () => {
 
         const fetchPosts = async () => {
             try {
-                const response = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/posts?per_page=4");
+                const response = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/posts?per_page=5");
                 const data = await response.json();
 
                 const postsWithImages = await Promise.all(

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
     display: flex;
     align-items: center;
-    background: white;
     border-radius: 8px;
     overflow: hidden;
     padding: 15px;
@@ -47,7 +46,7 @@ export const CardExcerpt = styled.p`
 
 export const CardInfo = styled.p`
     font-size: 12px;
-    color: red;
+    color: var(--primaria);
     font-weight: bold;
     margin-top: 5px;
 `;

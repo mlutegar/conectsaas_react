@@ -4,7 +4,6 @@ export const CardContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    background: white;
     border-radius: 8px;
     overflow: hidden;
     padding: 10px;
@@ -51,7 +50,7 @@ export const CardTitle = styled.h3`
 
 export const CardInfo = styled.p`
     font-size: 12px;
-    color: red;
+    color: var(--primaria);
     font-weight: bold;
     margin-top: 3px;
 `;

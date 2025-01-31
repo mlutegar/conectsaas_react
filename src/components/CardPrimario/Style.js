@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-    background: white;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     padding: 15px;
 `;
 
 export const CardImage = styled.img`
     width: 100%;
-    border-radius: 8px;
+    border-radius: 0.625rem;
     display: block;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 export const CardCategory = styled.p`
@@ -41,7 +39,7 @@ export const CardTitle = styled.h2`
 
 export const CardInfo = styled.p`
     font-size: 14px;
-    color: red;
+    color: var(--primaria);
     font-weight: bold;
     margin-top: 5px;
 `;

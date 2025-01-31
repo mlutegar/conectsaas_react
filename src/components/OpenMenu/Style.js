@@ -8,8 +8,8 @@ export const MenuOverlay = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-start;
     z-index: 999;
 `;
 
@@ -18,28 +18,35 @@ export const MenuContainer = styled.div`
     color: white;
     width: 90%;
     max-width: 400px;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 2.94rem; /* Adiciona espaço interno */
+    border-radius: 15px 0 0 15px;
+    text-align: center;
     text-align: center;
     position: relative;
+    height: 100%;
+    padding-top: 3.5rem;
 `;
 
 export const CloseButton = styled.button`
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 2.94rem;
     background: none;
     border: none;
     font-size: 24px;
     color: white;
     cursor: pointer;
+    padding: 0;
+    margin-top: 3.5rem;
 `;
 
 export const MenuList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 40px;
+    gap: 3.31rem;
+    margin-top: 6.44rem;
+    margin-bottom: 4.81rem;
+    align-items: flex-end;
 
     a {
         color: white;
@@ -63,7 +70,7 @@ export const MenuList = styled.div`
 export const SocialIcons = styled.div`
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
 
     a {

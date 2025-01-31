@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuOverlay, MenuContainer, CloseButton, MenuList, SocialIcons } from "./Style";
-import { SvgClose } from "../Svgs/Svgs";
+import {SvgClose, SvgInstagram, SvgLinkedin, SvgTwitter} from "../Svgs/Svgs";
 
 const OpenMenu = ({ isOpen, onClose }) => {
     const [categories, setCategories] = useState([]);
@@ -26,7 +26,7 @@ const OpenMenu = ({ isOpen, onClose }) => {
         <MenuOverlay>
             <MenuContainer>
                 <CloseButton onClick={onClose}>
-                    <SvgClose />
+                    <SvgClose/>
                 </CloseButton>
 
                 <MenuList>
@@ -37,20 +37,20 @@ const OpenMenu = ({ isOpen, onClose }) => {
                             {category.name.toUpperCase()}
                         </Link>
                     ))}
-
-                    <hr />
-
-                    {authors.length > 0 && authors.map((author) => (
-                        <Link key={author.id} to={`/autor/${author.slug}`} onClick={onClose}>
-                            {author.name}
-                        </Link>
-                    ))}
                 </MenuList>
 
+                <hr/>
+
                 <SocialIcons>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">🐦</a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">📸</a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">🔗</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <SvgTwitter/>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <SvgInstagram/>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                        <SvgLinkedin/>
+                    </a>
                 </SocialIcons>
             </MenuContainer>
         </MenuOverlay>
