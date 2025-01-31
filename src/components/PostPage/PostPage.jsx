@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { PostContainer, PostTitle, PostContent, PostImage, PostInfo, PostWrapper } from "./Style";
 import RelatedNews from "../RelatedNews/RelatedNews";
+import MaisNoticias from "../MaisNoticias/MaisNoticias";
 
 const PostPage = () => {
   const { slug } = useParams();
@@ -54,12 +55,13 @@ const PostPage = () => {
           <PostInfo>📅 {new Date(post.date).toLocaleDateString()}</PostInfo>
           <PostContent>
             {paragraphs.map((paragraph, index) => (
-                <div key={index}>
+                <div key={index} className={index === 0 ? "primeiro-paragrafo" : ""}>
                   <div dangerouslySetInnerHTML={{ __html: paragraph + "</p>" }} />
-                  {index === 1 && paragraphs.length > 2 && <RelatedNews categoryId={post.categories[0]} />}
+                  {index === 3 && paragraphs.length > 4 && <RelatedNews categoryId={post.categories[0]} />}
                 </div>
             ))}
           </PostContent>
+          <MaisNoticias categoryId={post.categories[0]} />
         </PostContainer>
 
         {/* Adiciona a Sidebar ao lado do Post */}

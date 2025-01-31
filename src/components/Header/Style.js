@@ -136,6 +136,10 @@ export const NewsBar = styled.div`
             text-decoration: underline;
         }
     }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const SearchBarContainer = styled.div`

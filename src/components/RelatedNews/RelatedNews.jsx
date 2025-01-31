@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { RelatedContainer, RelatedTitle, RelatedList, RelatedItem } from "./Style";
+import { RelatedContainer, RelatedTitle, RelatedList, RelatedItem, RelatedContent, RelatedImage, RelatedCategory } from "./Style";
 
 const RelatedNews = ({ categoryId }) => {
     const [relatedPosts, setRelatedPosts] = useState([]);
@@ -10,7 +10,23 @@ const RelatedNews = ({ categoryId }) => {
             try {
                 const response = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/posts?categories=${categoryId}&per_page=3`);
                 const data = await response.json();
-                setRelatedPosts(data);
+
+                const postsWithImages = await Promise.all(
+                    data.map(async (post) => {
+                        if (post.featured_media) {
+                            try {
+                                const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`);
+                                const mediaData = await mediaResponse.json();
+                                return { ...post, imageUrl: mediaData.source_url };
+                            } catch {
+                                return { ...post, imageUrl: "/fallback.jpg" }; // Imagem padrão
+                            }
+                        }
+                        return { ...post, imageUrl: "/fallback.jpg" };
+                    })
+                );
+
+                setRelatedPosts(postsWithImages);
             } catch (error) {
                 console.error("Erro ao buscar notícias relacionadas:", error);
             }
@@ -25,13 +41,19 @@ const RelatedNews = ({ categoryId }) => {
 
     return (
         <RelatedContainer>
-            <RelatedTitle>Notícias Relacionadas</RelatedTitle>
+            <RelatedTitle>NOTÍCIAS RELACIONADAS</RelatedTitle>
             <RelatedList>
                 {relatedPosts.map((post) => (
                     <RelatedItem key={post.id}>
                         <Link to={`/post/${post.slug}`}>
-                            <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                            <RelatedImage src={post.imageUrl} alt={post.title.rendered} />
                         </Link>
+                        <RelatedContent>
+                            <Link to={`/post/${post.slug}`}>
+                                <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                            </Link>
+                            <RelatedCategory>{post.categories[0]?.name || "Categoria"}</RelatedCategory>
+                        </RelatedContent>
                     </RelatedItem>
                 ))}
             </RelatedList>

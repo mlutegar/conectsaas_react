@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { SidebarContainer, SearchBar, RecentPosts, RecentPostItem, SearchInput, SearchButton } from "./Style";
-import { FaSearch } from "react-icons/fa";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {SidebarContainer, SearchBar, RecentPosts, RecentPostItem, SearchInput, SearchButton} from "./Style";
+import {FaSearch} from "react-icons/fa";
+import CardPrimario from "../CardPrimario/CardPrimario"; // Importando o CardPrincipal
 
 const Sidebar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -32,7 +33,7 @@ const Sidebar = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <SearchButton>
-                    <FaSearch />
+                    <FaSearch/>
                 </SearchButton>
             </SearchBar>
 
@@ -40,14 +41,12 @@ const Sidebar = () => {
             <h3>Recentes</h3>
             <RecentPosts>
                 {recentPosts.map((post) => (
-                    <RecentPostItem key={post.id}>
-                        <Link to={`/post/${post.slug}`}>
-                            <img src={post.jetpack_featured_media_url || "/fallback.jpg"} alt={post.title.rendered} />
-                        </Link>
-                        <Link to={`/post/${post.slug}`}>
-                            <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                        </Link>
-                    </RecentPostItem>
+                    <CardPrimario
+                        key={post.id}
+                        post={post}
+                        imageUrl={post.jetpack_featured_media_url || "/fallback.jpg"}
+                        title={post.title.rendered}
+                    />
                 ))}
             </RecentPosts>
         </SidebarContainer>

@@ -30,8 +30,9 @@ export const SvgLupa = ({onClick}) => (
     </svg>
 );
 
-export const SvgMenu = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none">
+export const SvgMenu = ({onClick}) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34" fill="none"
+         onClick={onClick} /* Adiciona suporte ao evento */>
         <line y1="1" x2="40" y2="1" stroke="white" strokeWidth="2"/>
         <line y1="33" x2="40" y2="33" stroke="white" strokeWidth="2"/>
         <line y1="17" x2="40" y2="17" stroke="white" strokeWidth="2"/>

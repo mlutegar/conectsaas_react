@@ -8,6 +8,11 @@ export const BannerContainer = styled.section`
   background: white;
   max-width: 1440px;
   margin: auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Apenas uma coluna */
+    grid-template-rows: auto auto; /* Primeira linha para o principal, segunda para os secundários */
+  }
 `;
 
 export const MainPost = styled.div`
@@ -28,6 +33,10 @@ export const SidePosts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media (max-width: 768px) {
+    order: 2; /* Força os posts secundários a ficarem abaixo */
+  }
 `;
 
 export const PostItem = styled.div`

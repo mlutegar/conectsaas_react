@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { BannerContainer, MainPost, SidePosts, PostItem, CategoryTag, PostInfo } from "./Style";
+import CardPrimario from "../CardPrimario/CardPrimario";
+import CardSecundario from "../CardSecundario/CardSecundario";
+import { BannerContainer, SidePosts } from "./Style";
 
 const Banner = () => {
     const [posts, setPosts] = useState([]);
@@ -44,26 +46,12 @@ const Banner = () => {
     return (
         <BannerContainer>
             {/* Post Principal */}
-            <MainPost>
-                <Link to={`/post/${posts[0].slug}`}>
-                    <img src={posts[0].imageUrl} alt={posts[0].title.rendered} />
-                </Link>
-                <CategoryTag>{posts[0].categories[0]?.name || "Categoria"}</CategoryTag>
-                <h2 dangerouslySetInnerHTML={{ __html: posts[0].title.rendered }} />
-                <PostInfo>📅 {new Date(posts[0].date).toLocaleDateString()} • ⏳ 7 horas atrás</PostInfo>
-            </MainPost>
+            <CardPrimario post={posts[0]} />
 
             {/* Posts Secundários */}
             <SidePosts>
                 {posts.slice(1).map((post) => (
-                    <PostItem key={post.id}>
-                        <Link to={`/post/${post.slug}`}>
-                            <img src={post.imageUrl} alt={post.title.rendered} />
-                        </Link>
-                        <CategoryTag>{post.categories[0]?.name || "Categoria"}</CategoryTag>
-                        <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                        <PostInfo>⏳ 7 horas atrás</PostInfo>
-                    </PostItem>
+                    <CardSecundario key={post.id} post={post} />
                 ))}
             </SidePosts>
         </BannerContainer>

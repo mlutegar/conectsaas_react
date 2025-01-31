@@ -7,6 +7,7 @@ export const PostContainer = styled.div`
     background: white;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 2;
 `;
 
 export const PostTitle = styled.h1`
@@ -42,6 +43,16 @@ export const PostContent = styled.div`
 
     p {
         margin-bottom: 10px;
+    }
+
+    /* Estiliza a primeira letra do primeiro parágrafo */
+    .primeiro-paragrafo:first-of-type::first-letter {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #8b0000; /* Vermelho do site */
+        float: left;
+        margin-right: 10px;
+        line-height: 1;
     }
 `;
 
