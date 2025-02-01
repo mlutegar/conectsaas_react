@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
+    padding: 1rem;
 `;
 
 export const CardImage = styled.img`
@@ -13,8 +14,8 @@ export const CardImage = styled.img`
 `;
 
 export const CardCategory = styled.p`
-    background: #333;
-    color: white;
+    color: ${({ modoEscuro }) => (modoEscuro ? "#fff" : "white")};
+    background-color: ${({ modoEscuro }) => (modoEscuro ? "var(--primaria)" : "var(--secundaria)")};
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
@@ -28,7 +29,7 @@ export const CardTitle = styled.h2`
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0;
-    color: black;
+    color: ${({ modoEscuro }) => (modoEscuro ? "white" : "black")};
     text-decoration: none;
 
     &:hover {
@@ -38,7 +39,7 @@ export const CardTitle = styled.h2`
 
 export const CardInfo = styled.p`
     font-size: 14px;
-    color: var(--primaria);
+    color: ${({ modoEscuro }) => (modoEscuro ? "#ddd" : "var(--primaria)")};
     font-weight: bold;
     margin-top: 5px;
 `;

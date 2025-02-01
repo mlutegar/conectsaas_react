@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { MaisNoticiasContainer, MaisNoticiasTitle, NoticiasList } from "./Style";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {Container, MaisNoticiasStyle, MaisNoticiasTitle, NoticiasList} from "./Style";
 import CardDestaque from "../CardDestaque/CardDestaque";
 
-const MaisNoticias = ({ categoryId }) => {
+const MaisNoticias = ({categoryId}) => {
     const [noticias, setNoticias] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const MaisNoticias = ({ categoryId }) => {
                                 console.error("Erro ao carregar imagem do post.");
                             }
                         }
-                        return { ...post, imageUrl };
+                        return {...post, imageUrl};
                     })
                 );
 
@@ -43,14 +43,16 @@ const MaisNoticias = ({ categoryId }) => {
     if (noticias.length === 0) return null;
 
     return (
-        <MaisNoticiasContainer>
-            <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
-            <NoticiasList>
-                {noticias.map((post) => (
-                    <CardDestaque key={post.id} post={post} />
-                ))}
-            </NoticiasList>
-        </MaisNoticiasContainer>
+        <MaisNoticiasStyle>
+            <Container>
+                <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
+                <NoticiasList>
+                    {noticias.map((post) => (
+                        <CardDestaque key={post.id} post={post}/>
+                    ))}
+                </NoticiasList>
+            </Container>
+        </MaisNoticiasStyle>
     );
 };
 

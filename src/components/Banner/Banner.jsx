@@ -1,12 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import CardPrimario from "../CardPrimario/CardPrimario";
 import CardSecundario from "../CardSecundario/CardSecundario";
-import { BannerContainer, SidePosts } from "./Style";
+import { BannerContainer, MainPost, SidePosts } from "./Style";
 
 const Banner = () => {
     const [posts, setPosts] = useState([]);
-    const isFetched = useRef(false); // Evita múltiplas execuções
+    const isFetched = useRef(false);
 
     useEffect(() => {
         if (isFetched.current) return;
@@ -19,16 +18,17 @@ const Banner = () => {
 
                 const postsWithImages = await Promise.all(
                     data.map(async (post) => {
+                        let imageUrl = "/fallback.jpg";
                         if (post.featured_media) {
                             try {
                                 const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`);
                                 const mediaData = await mediaResponse.json();
-                                return { ...post, imageUrl: mediaData.source_url };
+                                imageUrl = mediaData.source_url;
                             } catch {
-                                return { ...post, imageUrl: "/fallback.jpg" }; // Imagem padrão
+                                console.error("Erro ao carregar imagem do post.");
                             }
                         }
-                        return { ...post, imageUrl: "/fallback.jpg" };
+                        return { ...post, imageUrl };
                     })
                 );
 
@@ -46,11 +46,13 @@ const Banner = () => {
     return (
         <BannerContainer>
             {/* Post Principal */}
-            <CardPrimario post={posts[0]} />
+            <MainPost>
+                <CardPrimario post={posts[0]} tamanhoMenor={true} /> {/* Adicionado prop para reduzir o tamanho */}
+            </MainPost>
 
-            {/* Posts Secundários */}
+            {/* Posts Secundários - 2 colunas e 2 linhas */}
             <SidePosts>
-                {posts.slice(1).map((post) => (
+                {posts.slice(1, 5).map((post) => (
                     <CardSecundario key={post.id} post={post} />
                 ))}
             </SidePosts>

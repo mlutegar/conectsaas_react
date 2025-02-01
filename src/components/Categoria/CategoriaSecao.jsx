@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { CategoriaContainer, CategoriaTitle, NoticiasList } from "./Style";
+import {useEffect, useState} from "react";
+import {CategoriaSecaoStyle, CategoriaTitle, Container, NoticiasList} from "./Style";
 import CardPrimario from "../CardPrimario/CardPrimario";
 
-const CategoriaSecao = ({ categoriaNome, fundoCinza = false }) => {
+const CategoriaSecao = ({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);
     const [categoriaId, setCategoriaId] = useState(null);
 
@@ -59,7 +59,7 @@ const CategoriaSecao = ({ categoriaNome, fundoCinza = false }) => {
                                 console.error("Erro ao carregar imagem do post.");
                             }
                         }
-                        return { ...post, imageUrl };
+                        return {...post, imageUrl};
                     })
                 );
 
@@ -75,14 +75,16 @@ const CategoriaSecao = ({ categoriaNome, fundoCinza = false }) => {
     if (noticias.length === 0) return null;
 
     return (
-        <CategoriaContainer fundoCinza={fundoCinza}>
-            <CategoriaTitle>{categoriaNome.toUpperCase()}</CategoriaTitle>
-            <NoticiasList>
-                {noticias.map((post) => (
-                    <CardPrimario key={post.id} post={post} />
-                ))}
-            </NoticiasList>
-        </CategoriaContainer>
+        <CategoriaSecaoStyle fundoCinza={fundoCinza}>
+            <Container>
+                <CategoriaTitle>{categoriaNome.toUpperCase()}</CategoriaTitle>
+                <NoticiasList>
+                    {noticias.map((post) => (
+                        <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} />
+                    ))}
+                </NoticiasList>
+            </Container>
+        </CategoriaSecaoStyle>
     );
 };
 

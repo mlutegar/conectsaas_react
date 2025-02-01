@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { CardContainer, CardImage, CardContent, CardTitle, CardExcerpt, CardInfo } from "./Style";
+import {SvgRelogio} from "../Svgs/Svgs";
 
-const CardDestaque = ({ post }) => {
+const CardDestaque = ({ post, modoEscuro = false }) => {
     return (
-        <CardContainer>
+        <CardContainer modoEscuro={modoEscuro}>
             {/* Imagem do Post */}
             <Link to={`/post/${post.slug}`}>
                 <CardImage src={post.imageUrl} alt={post.title.rendered} />
@@ -13,14 +14,16 @@ const CardDestaque = ({ post }) => {
             <CardContent>
                 {/* Título */}
                 <Link to={`/post/${post.slug}`}>
-                    <CardTitle dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                    <CardTitle modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                 </Link>
 
                 {/* Trecho do texto */}
-                <CardExcerpt dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.slice(0, 150) + "..." }} />
+                <CardExcerpt modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.slice(0, 150) + "..." }} />
 
                 {/* Tempo de Postagem */}
-                <CardInfo>⏳ {new Date(post.date).toLocaleDateString()}</CardInfo>
+                <CardInfo modoEscuro={modoEscuro}>
+                    <SvgRelogio modoEscuro={modoEscuro} /> {new Date(post.date).toLocaleDateString()}
+                </CardInfo>
             </CardContent>
         </CardContainer>
     );

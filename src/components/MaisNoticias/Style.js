@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-export const MaisNoticiasContainer = styled.div`
+export const MaisNoticiasStyle = styled.div`
     background: #222; /* Fundo cinza escuro */
-    color: white;
     padding: 30px;
-    border-radius: 8px;
     margin-top: 40px;
+`;
+
+export const Container = styled.div`
+    max-width: 1440px;
+    margin: 0 auto;
+    color: white;
 `;
 
 export const MaisNoticiasTitle = styled.h2`

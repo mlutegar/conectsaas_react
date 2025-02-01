@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { SearchContainer, SearchTitle, ResultsList } from "./Style";
 import CardDestaque from "../CardDestaque/CardDestaque";
-import CardCategoria from "../../components/CardCategoria/CardCategoria";
 import CardAutor from "../../components/CardAutor/CardAutor";
 
 const SearchResults = () => {
@@ -125,7 +124,7 @@ const SearchResults = () => {
                     <h2>Categorias</h2>
                     <ResultsList>
                         {categories.map((category) => (
-                            <CardCategoria key={category.id} category={category} />
+                            <CardDestaque key={category.id} category={category} />
                         ))}
                     </ResultsList>
                 </section>

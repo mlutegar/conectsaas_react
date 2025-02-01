@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const CategoriaContainer = styled.div`
+export const CategoriaSecaoStyle = styled.div`
     background: ${(props) => (props.fundoCinza ? "#222" : "transparent")};
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
     padding: 30px;
-    border-radius: 8px;
     margin-top: 40px;
+`;
+
+export const Container = styled.div`
+    max-width: 1440px;
+    margin: 0 auto;
+    color: white;
 `;
 
 export const CategoriaTitle = styled.h2`
