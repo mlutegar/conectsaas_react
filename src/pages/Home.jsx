@@ -2,6 +2,7 @@ import Base from "./Base"
 import Banner from "../components/Banner/Banner";
 import CategoriaSecao from "../components/Categoria/CategoriaSecao";
 import Newsletter from "../components/Newsletter/Newsletter";
+import MostrarNoticiasColunasPreste from "../components/MostrarNoticiasColunasPreste/MostrarNoticiasColunasPreste";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Newsletter/>
         <CategoriaSecao categoriaNome="Finanças" fundoCinza={true} />
         <CategoriaSecao categoriaNome="Pessoas" fundoCinza={false} />
+        <MostrarNoticiasColunasPreste categoria1="Mundo" categoria2="Finanças" categoria3="Brasil" />
     </Base>
   )
 }

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
-    padding: 15px;
 `;
 
 export const CardImage = styled.img`
