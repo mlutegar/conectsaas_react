@@ -14,10 +14,13 @@ export const Container = styled.div`
 `;
 
 export const CategoriaTitle = styled.h2`
-    font-size: 20px;
-    font-weight: bold;
+    color: #000;
+    font-family: "Didact Gothic";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     text-transform: uppercase;
-    margin-bottom: 20px;
 `;
 
 export const NoticiasList = styled.div`

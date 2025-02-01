@@ -7,6 +7,11 @@ export const CardContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
     padding: 10px;
+    transition: color 0.4s ease-in-out;
+
+    &:hover {
+        color: var(--primaria);
+    }
 `;
 
 export const CardImage = styled.img`
@@ -15,6 +20,11 @@ export const CardImage = styled.img`
     border-radius: 6px;
     object-fit: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    transition: filter 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        filter: brightness(0.5) sepia(1) hue-rotate(-30deg);
+    }
 `;
 
 export const CardContent = styled.div`
@@ -33,15 +43,24 @@ export const CardCategory = styled.p`
     display: inline-block;
     border-radius: 4px;
     margin-bottom: 5px;
+    transition: color 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        color: var(--primaria);
+    }
 `;
 
-export const CardTitle = styled.h3`
-    font-size: 14px;
+export const CardTitle = styled.h2`
+    font-size: 18px;
     font-weight: bold;
-    margin: 5px 0;
+    margin: 10px 0;
     color: ${({ modoEscuro }) => (modoEscuro ? "white" : "black")};
     text-decoration: none;
-    line-height: 1.2;
+    transition: color 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        color: var(--primaria);
+    }
 
     &:hover {
         text-decoration: underline;
@@ -56,4 +75,9 @@ export const CardInfo = styled.p`
     display: flex;
     align-items: center;
     gap: 5px;
+    transition: color 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        color: var(--primaria);
+    }
 `;

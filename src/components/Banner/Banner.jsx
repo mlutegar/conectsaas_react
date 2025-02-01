@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import {useEffect, useState, useRef, memo} from "react";
 import CardPrimario from "../CardPrimario/CardPrimario";
 import CardSecundario from "../CardSecundario/CardSecundario";
 import { BannerContainer, MainPost, SidePosts } from "./Style";
 
-const Banner = () => {
+const Banner = memo(() => {
     const [posts, setPosts] = useState([]);
     const isFetched = useRef(false);
 
@@ -58,6 +58,6 @@ const Banner = () => {
             </SidePosts>
         </BannerContainer>
     );
-};
+});
 
 export default Banner;

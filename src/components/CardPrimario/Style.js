@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
-    padding: 1rem;
+    transition: color 0.4s ease-in-out;
+
+    &:hover {
+        color: var(--primaria);
+    }
 `;
 
 export const CardImage = styled.img`
@@ -11,6 +15,11 @@ export const CardImage = styled.img`
     border-radius: 0.625rem;
     display: block;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: filter 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        filter: brightness(0.5) sepia(1) hue-rotate(-30deg);
+    }
 `;
 
 export const CardCategory = styled.p`
@@ -31,15 +40,26 @@ export const CardTitle = styled.h2`
     margin: 10px 0;
     color: ${({ modoEscuro }) => (modoEscuro ? "white" : "black")};
     text-decoration: none;
+    transition: color 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        color: var(--primaria);
+    }
 
     &:hover {
         text-decoration: underline;
     }
 `;
 
+
 export const CardInfo = styled.p`
     font-size: 14px;
     color: ${({ modoEscuro }) => (modoEscuro ? "#ddd" : "var(--primaria)")};
     font-weight: bold;
     margin-top: 5px;
+    transition: color 0.4s ease-in-out;
+
+    ${CardContainer}:hover & {
+        color: var(--primaria);
+    }
 `;

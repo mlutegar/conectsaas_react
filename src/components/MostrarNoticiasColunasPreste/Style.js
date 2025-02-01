@@ -20,7 +20,11 @@ export const ColunaCategoria = styled.div`
 `;
 
 export const CategoriaTitulo = styled.h2`
-    font-size: 18px;
-    font-weight: bold;
+    color: #000;
+    font-family: "Didact Gothic";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
     text-transform: uppercase;
 `;

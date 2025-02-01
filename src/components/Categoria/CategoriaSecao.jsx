@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
 import {CategoriaSecaoStyle, CategoriaTitle, Container, NoticiasList} from "./Style";
 import CardPrimario from "../CardPrimario/CardPrimario";
 
-const CategoriaSecao = ({categoriaNome, fundoCinza = false}) => {
+const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);
     const [categoriaId, setCategoriaId] = useState(null);
 
@@ -86,6 +86,6 @@ const CategoriaSecao = ({categoriaNome, fundoCinza = false}) => {
             </Container>
         </CategoriaSecaoStyle>
     );
-};
+});
 
 export default CategoriaSecao;

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { CardContainer, CardImage, CardContent, CardCategory, CardTitle, CardInfo } from "./Style";
 import {SvgRelogio} from "../Svgs/Svgs";
+import {memo} from "react";
 
-const CardSecundario = ({ post, modoEscuro = false }) => {
+const CardSecundario = memo(({ post, modoEscuro = false }) => {
     return (
         <CardContainer modoEscuro={modoEscuro}>
             {/* Imagem do Post */}
@@ -26,6 +27,6 @@ const CardSecundario = ({ post, modoEscuro = false }) => {
             </CardContent>
         </CardContainer>
     );
-};
+});
 
 export default CardSecundario;
