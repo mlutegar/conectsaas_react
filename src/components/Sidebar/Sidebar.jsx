@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {SidebarContainer, SearchBar, RecentPosts, RecentPostItem, SearchInput, SearchButton} from "./Style";
+import {SidebarContainer, SearchBar, RecentPosts, SearchInput, SearchButton} from "./Style";
 import {FaSearch} from "react-icons/fa";
-import CardPrimario from "../CardPrimario/CardPrimario"; // Importando o CardPrincipal
+import CardPrimario from "../CardPrimario/CardPrimario";
 
 const Sidebar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -13,7 +12,23 @@ const Sidebar = () => {
             try {
                 const response = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/posts?per_page=4");
                 const data = await response.json();
-                setRecentPosts(data);
+
+                const postsWithImages = await Promise.all(
+                    data.map(async (post) => {
+                        if (post.featured_media) {
+                            try {
+                                const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`);
+                                const mediaData = await mediaResponse.json();
+                                return { ...post, imageUrl: mediaData.source_url };
+                            } catch {
+                                return { ...post, imageUrl: "/fallback.jpg" };
+                            }
+                        }
+                        return { ...post, imageUrl: "/fallback.jpg" };
+                    })
+                );
+
+                setRecentPosts(postsWithImages);
             } catch (error) {
                 console.error("Erro ao buscar posts recentes:", error);
             }
@@ -21,6 +36,7 @@ const Sidebar = () => {
 
         fetchRecentPosts();
     }, []);
+
 
     return (
         <SidebarContainer>
@@ -44,7 +60,7 @@ const Sidebar = () => {
                     <CardPrimario
                         key={post.id}
                         post={post}
-                        imageUrl={post.jetpack_featured_media_url || "/fallback.jpg"}
+                        imageUrl={post.imageUrl} // Agora a URL da imagem estará sempre definida corretamente
                         title={post.title.rendered}
                     />
                 ))}

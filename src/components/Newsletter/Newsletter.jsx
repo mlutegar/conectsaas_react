@@ -18,7 +18,7 @@ const Newsletter = ({darkMode = false}) => {
     };
 
     return (
-        <NewsletterStyle>
+        <NewsletterStyle darkMode={darkMode}>
             <Container darkMode={darkMode}>
                 <SvgLogo modo={"footer"}/>
                 <h2>Fique atualizado com as principais novidades do mundo SaaS! Não perca nada!</h2>

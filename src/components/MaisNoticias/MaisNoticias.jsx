@@ -48,7 +48,7 @@ const MaisNoticias = ({categoryId}) => {
                 <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
                 <NoticiasList>
                     {noticias.map((post) => (
-                        <CardDestaque key={post.id} post={post}/>
+                        <CardDestaque key={post.id} post={post} modoEscuro={true}/>
                     ))}
                 </NoticiasList>
             </Container>

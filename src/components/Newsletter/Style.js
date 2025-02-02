@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NewsletterStyle = styled.div`
-    background: #333;
+    background: ${(props) => (props.darkMode ? "#fff" : "#333")};
     padding: 30px;
     text-align: center;
 `;
@@ -10,9 +10,10 @@ export const Container = styled.div`
     border-radius: 10px;
     max-width: 800px;
     margin: 0 auto;
-    background: ${(props) => (props.darkMode ? "#000" : "#f8f8f8")};
+    background: ${(props) => (props.darkMode ? "#333" : "#f8f8f8")};
     color: ${(props) => (props.darkMode ? "white" : "black")};
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px 0;
     h2 {
         color: ${(props) => (props.darkMode ? "white" : "black")};
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RelatedContainer, RelatedTitle, RelatedList, RelatedItem, RelatedContent, RelatedImage, RelatedCategory } from "./Style";
+import CardSecundario from "../CardSecundario/CardSecundario";
 
 const RelatedNews = ({ categoryId }) => {
     const [relatedPosts, setRelatedPosts] = useState([]);
@@ -44,17 +45,7 @@ const RelatedNews = ({ categoryId }) => {
             <RelatedTitle>NOTÍCIAS RELACIONADAS</RelatedTitle>
             <RelatedList>
                 {relatedPosts.map((post) => (
-                    <RelatedItem key={post.id}>
-                        <Link to={`/post/${post.slug}`}>
-                            <RelatedImage src={post.imageUrl} alt={post.title.rendered} />
-                        </Link>
-                        <RelatedContent>
-                            <Link to={`/post/${post.slug}`}>
-                                <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                            </Link>
-                            <RelatedCategory>{post.categories[0]?.name || "Categoria"}</RelatedCategory>
-                        </RelatedContent>
-                    </RelatedItem>
+                    <CardSecundario key={post.id} post={post} />
                 ))}
             </RelatedList>
         </RelatedContainer>

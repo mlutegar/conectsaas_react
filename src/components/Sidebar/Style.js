@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 export const SidebarContainer = styled.aside`
     width: 300px;
-    background: #fff;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
     h3 {
         font-size: 18px;
