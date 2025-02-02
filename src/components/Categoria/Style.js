@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const CategoriaTitle = styled.h2`
-    color: #000;
+    color: ${(props) => (props.fundoCinza ? "white" : "black")};
     font-family: "Didact Gothic";
     font-size: 1.5rem;
     font-style: normal;

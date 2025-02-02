@@ -77,7 +77,7 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     return (
         <CategoriaSecaoStyle fundoCinza={fundoCinza}>
             <Container>
-                <CategoriaTitle>{categoriaNome.toUpperCase()}</CategoriaTitle>
+                <CategoriaTitle fundoCinza={fundoCinza}>{categoriaNome.toUpperCase()}</CategoriaTitle>
                 <NoticiasList>
                     {noticias.map((post) => (
                         <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} />

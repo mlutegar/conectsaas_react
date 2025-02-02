@@ -11,8 +11,8 @@ const Home = () => {
         <CategoriaSecao categoriaNome="Brasil" fundoCinza={true} />
         <CategoriaSecao categoriaNome="Mundo" fundoCinza={false} />
         <Newsletter/>
-        <CategoriaSecao categoriaNome="Finanças" fundoCinza={true} />
-        <CategoriaSecao categoriaNome="Pessoas" fundoCinza={false} />
+        <CategoriaSecao categoriaNome="Finanças" fundoCinza={false} />
+        <CategoriaSecao categoriaNome="Pessoas" fundoCinza={true} />
         <MostrarNoticiasColunasPreste categoria1="Mundo" categoria2="Finanças" categoria3="Brasil" />
     </Base>
   )

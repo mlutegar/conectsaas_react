@@ -2,11 +2,6 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
     max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     flex: 2;
 `;
 
@@ -14,7 +9,7 @@ export const PostTitle = styled.h1`
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
 `;
 
 export const PostImage = styled.img`
