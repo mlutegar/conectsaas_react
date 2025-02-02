@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RelatedContainer, RelatedTitle, RelatedList, RelatedItem, RelatedContent, RelatedImage, RelatedCategory } from "./Style";
-import CardSecundario from "../CardSecundario/CardSecundario";
+import CardSecundario from "../cards/CardSecundario/CardSecundario";
 
 const RelatedNews = ({ categoryId }) => {
     const [relatedPosts, setRelatedPosts] = useState([]);

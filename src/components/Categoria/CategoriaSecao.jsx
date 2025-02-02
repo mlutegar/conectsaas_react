@@ -1,6 +1,6 @@
 import {memo, useEffect, useState} from "react";
 import {CategoriaSecaoStyle, CategoriaTitle, Container, NoticiasList} from "./Style";
-import CardPrimario from "../CardPrimario/CardPrimario";
+import CardPrimario from "../cards/CardPrimario/CardPrimario";
 
 const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);

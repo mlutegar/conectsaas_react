@@ -8,8 +8,16 @@ export const Container = styled.div`
     margin: auto;
     padding: 20px;
 
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     @media (max-width: 1024px) {
         grid-template-columns: 1fr;
+    }
+    
+    @media (max-width: 768px) {
+        padding: 0;
     }
 `;
 
@@ -27,4 +35,12 @@ export const CategoriaTitulo = styled.h2`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
+    
+    padding: 15px 20px;
+`;
+
+export const NoticiasSecundarias = styled.div`
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;

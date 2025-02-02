@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import CardPrimario from "../CardPrimario/CardPrimario";
-import CardDestaque from "../CardDestaque/CardDestaque";
-import { Container, ColunaCategoria, CategoriaTitulo } from "./Style";
+import {useEffect, useState} from "react";
+import CardPrimario from "../cards/CardPrimario/CardPrimario";
+import CardDestaque from "../cards/CardDestaque/CardDestaque";
+import {Container, ColunaCategoria, CategoriaTitulo, NoticiasSecundarias} from "./Style";
 
-const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) => {
-    const [noticias, setNoticias] = useState({ categoria1: [], categoria2: [], categoria3: [] });
+const MostrarNoticiasColunasPreste = ({categoria1, categoria2, categoria3}) => {
+    const [noticias, setNoticias] = useState({categoria1: [], categoria2: [], categoria3: []});
     const [categoriasIds, setCategoriasIds] = useState({});
 
     useEffect(() => {
@@ -58,11 +58,11 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
                                 console.error("Erro ao carregar imagem do post.");
                             }
                         }
-                        return { ...post, imageUrl };
+                        return {...post, imageUrl};
                     })
                 );
 
-                setNoticias((prev) => ({ ...prev, [key]: noticiasComImagens }));
+                setNoticias((prev) => ({...prev, [key]: noticiasComImagens}));
             } catch (error) {
                 console.error(`Erro ao buscar notícias para ${key}:`, error);
             }
@@ -78,10 +78,12 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
             <CategoriaTitulo>{titulo}</CategoriaTitulo>
             {noticias[categoriaKey].length > 0 && (
                 <>
-                    <CardPrimario post={noticias[categoriaKey][0]} />
-                    {noticias[categoriaKey].slice(1, 5).map((post) => (
-                        <CardDestaque key={post.id} post={post} />
-                    ))}
+                    <CardPrimario post={noticias[categoriaKey][0]} primeiro={true}/>
+                    <NoticiasSecundarias>
+                        {noticias[categoriaKey].slice(1, 5).map((post) => (
+                            <CardDestaque key={post.id} post={post}/>
+                        ))}
+                    </NoticiasSecundarias>
                 </>
             )}
         </ColunaCategoria>

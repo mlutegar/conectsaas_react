@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-    border-radius: 8px;
+    border-radius: ${({ primeiro }) => (primeiro ? "0" : "8px")};
     overflow: hidden;
     transition: color 0.4s ease-in-out;
 
@@ -12,7 +12,7 @@ export const CardContainer = styled.div`
 
 export const CardImage = styled.img`
     width: 100%;
-    border-radius: 0.625rem;
+    border-radius: ${({ primeiro }) => (primeiro ? "0" : "0.625rem")};
     display: block;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
     transition: filter 0.4s ease-in-out;
@@ -62,4 +62,8 @@ export const CardInfo = styled.p`
     ${CardContainer}:hover & {
         color: var(--primaria);
     }
+`;
+
+export const Conteudo = styled.div`
+    padding: 0 20px;
 `;

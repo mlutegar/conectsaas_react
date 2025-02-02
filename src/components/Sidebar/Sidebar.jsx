@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {SidebarContainer, SearchBar, RecentPosts, SearchInput, SearchButton} from "./Style";
 import {FaSearch} from "react-icons/fa";
-import CardPrimario from "../CardPrimario/CardPrimario";
+import CardPrimario from "../cards/CardPrimario/CardPrimario";
 
 const Sidebar = () => {
     const [searchQuery, setSearchQuery] = useState("");

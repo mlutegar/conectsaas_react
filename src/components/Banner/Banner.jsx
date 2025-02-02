@@ -1,6 +1,6 @@
 import {useEffect, useState, useRef, memo} from "react";
-import CardPrimario from "../CardPrimario/CardPrimario";
-import CardSecundario from "../CardSecundario/CardSecundario";
+import CardPrimario from "../cards/CardPrimario/CardPrimario";
+import CardSecundario from "../cards/CardSecundario/CardSecundario";
 import { BannerContainer, MainPost, SidePosts } from "./Style";
 
 const Banner = memo(() => {

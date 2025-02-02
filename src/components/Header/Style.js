@@ -7,11 +7,12 @@ export const Top = styled.header`
     align-items: center;
     justify-content: center;
     position: relative;
-    
+
     @media (max-width: 768px) {
         position: fixed;
         width: 100%;
         box-sizing: border-box;
+        z-index: 20000;
     }
 `;
 

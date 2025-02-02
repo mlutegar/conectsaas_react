@@ -5,6 +5,10 @@ export const CategoriaSecaoStyle = styled.div`
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
     padding: 30px;
     margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 `;
 
 export const Container = styled.div`

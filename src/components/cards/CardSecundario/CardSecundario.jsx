@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CardContainer, CardImage, CardContent, CardCategory, CardTitle, CardInfo } from "./Style";
-import {SvgRelogio} from "../Svgs/Svgs";
+import {SvgRelogio} from "../../Svgs/Svgs";
 import {memo} from "react";
 
 const CardSecundario = memo(({ post, modoEscuro = false }) => {

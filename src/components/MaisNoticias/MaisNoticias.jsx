@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Container, MaisNoticiasStyle, MaisNoticiasTitle, NoticiasList} from "./Style";
-import CardDestaque from "../CardDestaque/CardDestaque";
+import CardDestaque from "../cards/CardDestaque/CardDestaque";
 
 const MaisNoticias = ({categoryId}) => {
     const [noticias, setNoticias] = useState([]);

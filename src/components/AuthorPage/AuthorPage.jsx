@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthorContainer, BannerContainer, NewsList, AuthorInfo } from "./Style";
-import CardPrimario from "../../components/CardPrimario/CardPrimario";
-import CardSecundario from "../../components/CardSecundario/CardSecundario";
+import CardPrimario from "../cards/CardPrimario/CardPrimario";
+import CardSecundario from "../cards/CardSecundario/CardSecundario";
 
 const AuthorPage = () => {
     const { slug } = useParams(); // Obtém o slug do autor pela URL

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { SearchContainer, SearchTitle, ResultsList } from "./Style";
-import CardDestaque from "../CardDestaque/CardDestaque";
-import CardAutor from "../../components/CardAutor/CardAutor";
+import CardDestaque from "../cards/CardDestaque/CardDestaque";
+import CardAutor from "../cards/CardAutor/CardAutor";
 
 const SearchResults = () => {
     const { query } = useParams();
