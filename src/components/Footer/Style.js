@@ -5,6 +5,7 @@ export const FooterContainer = styled.footer`
     color: white;
     padding: 40px 20px;
     text-align: left;
+    margin-top: 4.75rem;
 `;
 
 export const FooterContent = styled.div`
@@ -23,7 +24,7 @@ export const FooterContent = styled.div`
 export const FooterSection = styled.div`
     flex: 1;
     margin: 10px;
-    
+
     h4 {
         font-size: 16px;
         font-weight: bold;

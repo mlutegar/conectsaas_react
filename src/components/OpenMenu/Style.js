@@ -10,7 +10,7 @@ export const MenuOverlay = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    z-index: 999;
+    z-index: 30000;
 
     opacity: ${({ isOpen }) => (isOpen ? "1" : "0")}; /* Transição de opacidade */
     pointer-events: ${({ isOpen }) => (isOpen ? "all" : "none")}; /* Impede cliques quando fechado */

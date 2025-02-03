@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 2rem;
     max-width: 1440px;
     margin: auto;
     padding: 0 20px;
@@ -15,7 +15,7 @@ export const Container = styled.div`
     @media (max-width: 1024px) {
         grid-template-columns: 1fr;
     }
-    
+
     @media (max-width: 768px) {
         padding: 0;
     }
@@ -40,6 +40,10 @@ export const CategoriaTitulo = styled.h2`
 `;
 
 export const NoticiasSecundarias = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     @media (max-width: 768px) {
         padding: 0 20px;
     }
