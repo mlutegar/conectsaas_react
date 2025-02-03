@@ -12,10 +12,14 @@ export const CardContainer = styled.div`
 
 export const CardImage = styled.img`
     width: 100%;
-    border-radius: ${({ primeiro }) => (primeiro ? "0" : "0.625rem")};
     display: block;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
     transition: filter 0.4s ease-in-out;
+    border-radius: 0.625rem;
+    
+    @media (max-width: 768px) {
+        border-radius: ${({ primeiro }) => (primeiro ? "0" : "0.625rem")};
+    }
 
     ${CardContainer}:hover & {
         filter: brightness(0.5) sepia(1) hue-rotate(-30deg);
@@ -65,5 +69,8 @@ export const CardInfo = styled.p`
 `;
 
 export const Conteudo = styled.div`
-    padding: 0 20px;
+    
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;

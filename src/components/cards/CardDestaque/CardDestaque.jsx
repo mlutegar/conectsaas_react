@@ -12,7 +12,7 @@ const CardDestaque = memo(({ post, modoEscuro = false }) => {
                 <Link to={`/post/${post.slug}`}>
                     <CardTitle modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                 </Link>
-                <CardExcerpt modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.slice(0, 150) + "..." }} />
+                {/*<CardExcerpt modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.slice(0, 150) + "..." }} />*/}
             </CardContent>
         </CardContainer>
     );

@@ -6,7 +6,7 @@ export const Container = styled.div`
     gap: 20px;
     max-width: 1440px;
     margin: auto;
-    padding: 20px;
+    padding: 0 20px;
 
     @media (max-width: 1200px) {
         grid-template-columns: repeat(2, 1fr);
@@ -35,8 +35,8 @@ export const CategoriaTitulo = styled.h2`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
-    
-    padding: 15px 20px;
+
+    margin-top: 4.75rem;
 `;
 
 export const NoticiasSecundarias = styled.div`

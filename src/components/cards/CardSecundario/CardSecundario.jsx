@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { CardContainer, CardImage, CardContent, CardCategory, CardTitle, CardInfo } from "./Style";
 import {SvgRelogio} from "../../Svgs/Svgs";
 import {memo} from "react";
+import ButtomCategory from "../ButtomCategory/ButtomCategory";
 
 const CardSecundario = memo(({ post, modoEscuro = false }) => {
+    console.log(post.categories);
+
     return (
         <CardContainer modoEscuro={modoEscuro}>
             {/* Imagem do Post */}
@@ -12,15 +15,10 @@ const CardSecundario = memo(({ post, modoEscuro = false }) => {
             </Link>
 
             <CardContent>
-                {/* Categoria */}
-                <CardCategory modoEscuro={modoEscuro}>{post.categories[0]?.name || "CATEGORIA"}</CardCategory>
-
-                {/* Título */}
+                <ButtomCategory modoEscuro={modoEscuro} name={post.categories[0]?.name} />
                 <Link to={`/post/${post.slug}`}>
                     <CardTitle modoEscuro={modoEscuro} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                 </Link>
-
-                {/* Tempo de Postagem */}
                 <CardInfo modoEscuro={modoEscuro}>
                     <SvgRelogio modoEscuro={modoEscuro} /> {new Date(post.date).toLocaleDateString()}
                 </CardInfo>

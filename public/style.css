@@ -22,8 +22,6 @@ a {
 }
 
 div.container {
-  padding: 1rem;
-
   @media (max-width: 768px) {
     padding-top: 5rem;
     padding: 0;
