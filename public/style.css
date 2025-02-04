@@ -11,14 +11,32 @@
 body {
   margin: 0;
   font-family: "Libre Franklin", serif;
-  background: var(--background) url('imagens/fundo.png') no-repeat center center fixed;
-  background-size: cover;
+  background: var(--background);
   color: var(--secundaria);
+  position: relative;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('imagens/fundo.png') no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
+}
+
 
 a {
   font-family: "Libre Franklin", serif;
   text-decoration: none;
+}
+
+h2 {
+  font-weight: 200;
 }
 
 div.container {
@@ -27,6 +45,6 @@ div.container {
   }
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,h3,h4,h5,h6{
   margin: 0;
 }

@@ -6,6 +6,7 @@ import RelatedNews from "../RelatedNews/RelatedNews";
 import MaisNoticias from "../MaisNoticias/MaisNoticias";
 import CompartilharNoticia from "../CompartilharNoticia/CompartilharNoticia";
 import WordPressApi from "../../services/wordpressApi";
+import ButtomCategory from "../cards/ButtomCategory/ButtomCategory";
 
 const PostPage = () => {
     const { slug } = useParams();
@@ -39,6 +40,7 @@ const PostPage = () => {
         <>
             <PostWrapper>
                 <PostContainer>
+                    <ButtomCategory/>
                     <PostTitle dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                     <PostImage src={post.imageUrl} alt={post.title.rendered} />
                     <PostInfo>📅 {new Date(post.date).toLocaleDateString()}</PostInfo>
