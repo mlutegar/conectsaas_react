@@ -9,15 +9,16 @@ export const MaisNoticiasStyle = styled.div`
 
 export const Container = styled.div`
     max-width: 1440px;
-    margin: 0 auto;
     color: white;
 `;
 
 export const MaisNoticiasTitle = styled.h2`
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+    color: #FFF;
+    font-family: "Libre Franklin";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 `;
 
 export const NoticiasList = styled.div`

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, MaisNoticiasStyle, MaisNoticiasTitle, NoticiasList } from "./Style";
-import CardDestaque from "../cards/CardDestaque/CardDestaque";
+import CardTextoLateral from "../cards/CardTextoLateral/CardTextoLateral";
 import WordPressApi from "../../services/wordpressApi";
 
 const MaisNoticias = ({ categoryId }) => {
@@ -30,7 +30,7 @@ const MaisNoticias = ({ categoryId }) => {
                 <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
                 <NoticiasList>
                     {noticias.map((post) => (
-                        <CardDestaque key={post.id} post={post} modoEscuro={true} />
+                        <CardTextoLateral key={post.id} post={post} modoEscuro={true} />
                     ))}
                 </NoticiasList>
             </Container>
