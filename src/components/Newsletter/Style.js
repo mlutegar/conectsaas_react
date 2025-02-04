@@ -7,6 +7,9 @@ export const NewsletterStyle = styled.div`
 `;
 
 export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 10px;
     max-width: 800px;
     margin: 0 auto;
@@ -15,6 +18,7 @@ export const Container = styled.div`
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 30px 0;
     h2 {
+        width: 80%;
         color: ${(props) => (props.darkMode ? "white" : "black")};
     }
 `;
