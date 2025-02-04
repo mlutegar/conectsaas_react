@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SearchContainer, SearchTitle, ResultsList } from "./Style";
 import CardDestaque from "../cards/CardDestaque/CardDestaque";
 import CardAutor from "../cards/CardAutor/CardAutor";
+import WordPressApi from "../../services/wordpressApi";
 
 const SearchResults = () => {
     const { query } = useParams();
@@ -14,39 +15,19 @@ const SearchResults = () => {
     useEffect(() => {
         const fetchSearchResults = async () => {
             try {
-                const postsResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/posts?search=${query}`);
-                let postsData = await postsResponse.json();
-
-                // Adicionar imagens às postagens
-                const postsWithImages = await Promise.all(
-                    postsData.map(async (post) => {
-                        let imageUrl = "/fallback.jpg";
-                        if (post.featured_media) {
-                            try {
-                                const mediaResponse = await fetch(
-                                    `https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`
-                                );
-                                const mediaData = await mediaResponse.json();
-                                imageUrl = mediaData.source_url;
-                            } catch {
-                                console.error("Erro ao carregar imagem do post.");
-                            }
-                        }
-                        return { ...post, imageUrl };
-                    })
-                );
+                // Buscar posts
+                let postsData = await WordPressApi.search(query, "posts");
+                postsData = await WordPressApi.getPostsWithMedia(postsData);
 
                 // Buscar categorias pelo nome
-                const categoriesResponse = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories");
-                const categoriesData = await categoriesResponse.json();
-                const matchedCategories = categoriesData.filter(category =>
+                const allCategories = await WordPressApi.getCategories();
+                const matchedCategories = allCategories.filter(category =>
                     category.name.toLowerCase().includes(query.toLowerCase())
                 );
 
                 // Buscar autores pelo nome
-                const authorsResponse = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/users");
-                const authorsData = await authorsResponse.json();
-                const matchedAuthors = authorsData.filter(author =>
+                const allAuthors = await WordPressApi.getUsers();
+                const matchedAuthors = allAuthors.filter(author =>
                     author.name.toLowerCase().includes(query.toLowerCase())
                 );
 
@@ -54,36 +35,16 @@ const SearchResults = () => {
                 let authorPosts = [];
                 for (const author of matchedAuthors) {
                     try {
-                        const authorPostsResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/posts?author=${author.id}`);
-                        let authorPostsData = await authorPostsResponse.json();
-
-                        // Adicionar imagens aos posts do autor
-                        const authorPostsWithImages = await Promise.all(
-                            authorPostsData.map(async (post) => {
-                                let imageUrl = "/fallback.jpg";
-                                if (post.featured_media) {
-                                    try {
-                                        const mediaResponse = await fetch(
-                                            `https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`
-                                        );
-                                        const mediaData = await mediaResponse.json();
-                                        imageUrl = mediaData.source_url;
-                                    } catch {
-                                        console.error("Erro ao carregar imagem do post.");
-                                    }
-                                }
-                                return { ...post, imageUrl };
-                            })
-                        );
-
-                        authorPosts = [...authorPosts, ...authorPostsWithImages];
+                        let authorPostsData = await WordPressApi.getPosts({ author: author.id });
+                        authorPostsData = await WordPressApi.getPostsWithMedia(authorPostsData);
+                        authorPosts = [...authorPosts, ...authorPostsData];
                     } catch {
                         console.error(`Erro ao buscar posts do autor ${author.name}`);
                     }
                 }
 
                 // Atualiza os estados
-                setPosts([...postsWithImages, ...authorPosts]); // Adiciona os posts dos autores
+                setPosts([...postsData, ...authorPosts]); // Adiciona os posts dos autores
                 setCategories(matchedCategories);
                 setAuthors(matchedAuthors);
                 setLoading(false);
@@ -95,7 +56,6 @@ const SearchResults = () => {
 
         fetchSearchResults();
     }, [query]);
-
 
     if (loading) return <p>Carregando resultados...</p>;
     if (posts.length === 0 && categories.length === 0 && authors.length === 0) {

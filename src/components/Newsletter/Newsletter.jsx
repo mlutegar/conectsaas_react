@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NewsletterStyle, FormContainer, InputField, CheckboxContainer, Button, Container } from "./Style";
 import { SvgLogo } from "../Svgs/Svgs";
+import WordPressApi from "../../services/wordpressApi";
 
 const Newsletter = ({ darkMode = false }) => {
     const [nome, setNome] = useState("");
@@ -21,18 +22,7 @@ const Newsletter = ({ darkMode = false }) => {
         setMessage("");
 
         try {
-            const response = await fetch("https://api.conectasaas.com.br/wp-json/newsletter/v1/salvar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, email }),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Erro ao cadastrar");
-            }
-
+            const response = await WordPressApi.subscribeNewsletter({ nome, email });
             setMessage("Inscrição realizada com sucesso!");
             setNome("");
             setEmail("");

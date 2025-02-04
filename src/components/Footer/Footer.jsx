@@ -3,15 +3,22 @@ import { Link } from "react-router-dom";
 import { FooterContainer, FooterContent, FooterSection, FooterBottom, CategoriesGrid, SocialIcons } from "./Style";
 import { SvgLogo } from "../Svgs/Svgs";
 import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import WordPressApi from "../../services/wordpressApi";
 
 const Footer = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories")
-            .then((response) => response.json())
-            .then((data) => setCategories(data))
-            .catch((error) => console.error("Erro ao buscar categorias:", error));
+        const fetchCategories = async () => {
+            try {
+                const data = await WordPressApi.getCategories();
+                setCategories(data);
+            } catch (error) {
+                console.error("Erro ao buscar categorias:", error);
+            }
+        };
+
+        fetchCategories();
     }, []);
 
     return (
@@ -44,7 +51,6 @@ const Footer = () => {
                 {/* Redes Sociais */}
                 <FooterSection>
                     <SocialIcons>
-
                         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { AuthorContainer, BannerContainer, NewsList, AuthorInfo } from "./Style";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
+import WordPressApi from "../../services/wordpressApi";
 
 const AuthorPage = () => {
     const { slug } = useParams(); // Obtém o slug do autor pela URL
@@ -11,41 +12,18 @@ const AuthorPage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchAuthor = async () => {
+        const fetchAuthorData = async () => {
             try {
                 // Buscar autor pelo slug
-                const response = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/users?slug=${slug}`);
-                const data = await response.json();
-
-                if (data.length > 0) {
-                    setAuthor(data[0]);
+                const authorData = await WordPressApi.getUserBySlug(slug);
+                if (authorData) {
+                    setAuthor(authorData);
 
                     // Buscar posts desse autor
-                    const postsResponse = await fetch(
-                        `https://api.conectasaas.com.br/wp-json/wp/v2/posts?author=${data[0].id}&per_page=10`
-                    );
-                    const postsData = await postsResponse.json();
+                    let postsData = await WordPressApi.getPosts({ author: authorData.id, per_page: 10 });
+                    postsData = await WordPressApi.getPostsWithMedia(postsData);
 
-                    // Adicionando imagens aos posts
-                    const postsWithImages = await Promise.all(
-                        postsData.map(async (post) => {
-                            let imageUrl = "/fallback.jpg";
-                            if (post.featured_media) {
-                                try {
-                                    const mediaResponse = await fetch(
-                                        `https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`
-                                    );
-                                    const mediaData = await mediaResponse.json();
-                                    imageUrl = mediaData.source_url;
-                                } catch {
-                                    console.error("Erro ao carregar imagem do post.");
-                                }
-                            }
-                            return { ...post, imageUrl };
-                        })
-                    );
-
-                    setPosts(postsWithImages);
+                    setPosts(postsData);
                 }
                 setLoading(false);
             } catch (error) {
@@ -54,7 +32,7 @@ const AuthorPage = () => {
             }
         };
 
-        fetchAuthor();
+        fetchAuthorData();
     }, [slug]);
 
     if (loading) return <p>Carregando...</p>;

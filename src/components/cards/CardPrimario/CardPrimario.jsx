@@ -8,9 +8,10 @@ import {
 } from "./Style";
 import { SvgRelogio } from "../../Svgs/Svgs";
 import { memo } from "react";
-import ButtomCategory from "../ButtomCategory/ButtomCategory"; // Importando o novo componente
+import ButtomCategory from "../ButtomCategory/ButtomCategory"; // Componente do botão de categoria
 
-const CardPrimario = memo(({ post, modoEscuro = false, primeiro = false }) => {
+// Adicionamos "catName" nas props
+const CardPrimario = memo(({ post, modoEscuro = false, primeiro = false, catName }) => {
     return (
         <CardContainer modoEscuro={modoEscuro} primeiro={primeiro}>
             <Link to={`/post/${post.slug}`}>
@@ -22,7 +23,8 @@ const CardPrimario = memo(({ post, modoEscuro = false, primeiro = false }) => {
             </Link>
 
             <Conteudo>
-                <ButtomCategory modoEscuro={modoEscuro} name={post.categories[0]?.name} />
+                {/* Se "catName" existir, ele é utilizado; caso contrário, tenta usar post.categories[0]?.name */}
+                <ButtomCategory modoEscuro={modoEscuro} name={catName || post.categories[0]?.name} />
 
                 <Link to={`/post/${post.slug}`}>
                     <CardTitle

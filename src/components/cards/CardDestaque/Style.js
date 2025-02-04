@@ -89,7 +89,7 @@ export const CardTitle = styled.h3`
     }
 `;
 
-export const CardExcerpt = styled.p`
+export const CardExcerpt = styled.div`
     color: ${({ modoEscuro }) => (modoEscuro ? "#ccc" : "#444")};
     margin-bottom: 8px;
     line-height: 1.4;

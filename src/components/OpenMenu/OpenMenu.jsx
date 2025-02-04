@@ -1,22 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuOverlay, MenuContainer, CloseButton, MenuList, SocialIcons } from "./Style";
-import {SvgClose, SvgInstagram, SvgLinkedin, SvgTwitter} from "../Svgs/Svgs";
+import { SvgClose, SvgInstagram, SvgLinkedin, SvgTwitter } from "../Svgs/Svgs";
+import WordPressApi from "../../services/wordpressApi";
 
 const OpenMenu = ({ isOpen, onClose }) => {
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
-        fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories")
-            .then((response) => response.json())
-            .then((data) => setCategories(data))
-            .catch((error) => console.error("Erro ao buscar categorias:", error));
+        const fetchData = async () => {
+            try {
+                const categoriesData = await WordPressApi.getCategories();
+                setCategories(categoriesData);
 
-        fetch("https://api.conectasaas.com.br/wp-json/wp/v2/users")
-            .then((response) => response.json())
-            .then((data) => setAuthors(data))
-            .catch((error) => console.error("Erro ao buscar autores:", error));
+                const authorsData = await WordPressApi.getUsers();
+                setAuthors(authorsData);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (

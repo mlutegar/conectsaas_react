@@ -6,6 +6,10 @@ export const FooterContainer = styled.footer`
     padding: 40px 20px;
     text-align: left;
     margin-top: 4.75rem;
+
+    @media (max-width: 768px) {
+        margin-top: 0;
+    }
 `;
 
 export const FooterContent = styled.div`

@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
-import {SidebarContainer, SearchBar, RecentPosts, SearchInput, SearchButton} from "./Style";
-import {FaSearch} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { SidebarContainer, SearchBar, RecentPosts, SearchInput, SearchButton } from "./Style";
+import { FaSearch } from "react-icons/fa";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
+import WordPressApi from "../../services/wordpressApi";
 
 const Sidebar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -10,25 +11,9 @@ const Sidebar = () => {
     useEffect(() => {
         const fetchRecentPosts = async () => {
             try {
-                const response = await fetch("https://api.conectasaas.com.br/wp-json/wp/v2/posts?per_page=4");
-                const data = await response.json();
-
-                const postsWithImages = await Promise.all(
-                    data.map(async (post) => {
-                        if (post.featured_media) {
-                            try {
-                                const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`);
-                                const mediaData = await mediaResponse.json();
-                                return { ...post, imageUrl: mediaData.source_url };
-                            } catch {
-                                return { ...post, imageUrl: "/fallback.jpg" };
-                            }
-                        }
-                        return { ...post, imageUrl: "/fallback.jpg" };
-                    })
-                );
-
-                setRecentPosts(postsWithImages);
+                let posts = await WordPressApi.getPosts({ per_page: 4 });
+                posts = await WordPressApi.getPostsWithMedia(posts);
+                setRecentPosts(posts);
             } catch (error) {
                 console.error("Erro ao buscar posts recentes:", error);
             }
@@ -36,7 +21,6 @@ const Sidebar = () => {
 
         fetchRecentPosts();
     }, []);
-
 
     return (
         <SidebarContainer>
@@ -49,7 +33,7 @@ const Sidebar = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <SearchButton>
-                    <FaSearch/>
+                    <FaSearch />
                 </SearchButton>
             </SearchBar>
 

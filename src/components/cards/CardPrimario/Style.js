@@ -56,7 +56,7 @@ export const CardTitle = styled.h2`
 `;
 
 
-export const CardInfo = styled.p`
+export const CardInfo = styled.div`
     font-size: 14px;
     color: ${({ modoEscuro }) => (modoEscuro ? "#ddd" : "var(--primaria)")};
     font-weight: bold;

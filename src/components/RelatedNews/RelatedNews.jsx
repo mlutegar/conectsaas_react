@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { RelatedContainer, RelatedTitle, RelatedList, RelatedItem, RelatedContent, RelatedImage, RelatedCategory } from "./Style";
+import { RelatedContainer, RelatedTitle, RelatedList } from "./Style";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
+import WordPressApi from "../../services/wordpressApi";
 
 const RelatedNews = ({ categoryId }) => {
     const [relatedPosts, setRelatedPosts] = useState([]);
@@ -9,25 +9,9 @@ const RelatedNews = ({ categoryId }) => {
     useEffect(() => {
         const fetchRelatedNews = async () => {
             try {
-                const response = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/posts?categories=${categoryId}&per_page=3`);
-                const data = await response.json();
-
-                const postsWithImages = await Promise.all(
-                    data.map(async (post) => {
-                        if (post.featured_media) {
-                            try {
-                                const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${post.featured_media}`);
-                                const mediaData = await mediaResponse.json();
-                                return { ...post, imageUrl: mediaData.source_url };
-                            } catch {
-                                return { ...post, imageUrl: "/fallback.jpg" }; // Imagem padrão
-                            }
-                        }
-                        return { ...post, imageUrl: "/fallback.jpg" };
-                    })
-                );
-
-                setRelatedPosts(postsWithImages);
+                let posts = await WordPressApi.getPosts({ categories: categoryId, per_page: 3 });
+                posts = await WordPressApi.getPostsWithMedia(posts);
+                setRelatedPosts(posts);
             } catch (error) {
                 console.error("Erro ao buscar notícias relacionadas:", error);
             }

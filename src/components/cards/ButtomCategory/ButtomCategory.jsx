@@ -1,11 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CardCategory as StyledCardCategory } from "./Style";
 
-const CardCategory = ({ name, modoEscuro }) => {
+const CardCategory = ({ name, slug, modoEscuro }) => {
+    // Caso não seja fornecido o slug, cria um a partir do nome
+    const categorySlug =
+        slug || (name ? name.toLowerCase().replace(/\s+/g, "-") : "categoria");
+
     return (
-        <StyledCardCategory modoEscuro={modoEscuro}>
-            {name || "CATEGORIA"}
-        </StyledCardCategory>
+        <Link to={`/categoria/${categorySlug}`}>
+            <StyledCardCategory modoEscuro={modoEscuro}>
+                {name || "CATEGORIA"}
+            </StyledCardCategory>
+        </Link>
     );
 };
 

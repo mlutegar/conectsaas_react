@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Top, Navbar, Logo, AuthLinks, NewsBar, SearchBarContainer, SearchInput, Navegacao } from "./Style";
 import { SvgClose, SvgLogo, SvgLupa, SvgMenu } from "../Svgs/Svgs";
 import OpenMenu from "../OpenMenu/OpenMenu"; // Importando o menu aberto
+import WordPressApi from "../../services/wordpressApi";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -18,10 +19,16 @@ const Header = () => {
     };
 
     useEffect(() => {
-        fetch("https://api.conectasaas.com.br/wp-json/wp/v2/categories")
-            .then((response) => response.json())
-            .then((data) => setCategories(data))
-            .catch((error) => console.error("Erro ao buscar categorias:", error));
+        const fetchCategories = async () => {
+            try {
+                const data = await WordPressApi.getCategories();
+                setCategories(data);
+            } catch (error) {
+                console.error("Erro ao buscar categorias:", error);
+            }
+        };
+
+        fetchCategories();
     }, []);
 
     return (
@@ -67,7 +74,7 @@ const Header = () => {
                 <div className="categories-container">
                     <Link to="/">INÍCIO</Link>
                     {categories.length > 0 &&
-                        categories.map((category, index) => (
+                        categories.map((category) => (
                             <Link key={category.id} to={`/categoria/${category.slug}`}>
                                 {category.name}
                             </Link>

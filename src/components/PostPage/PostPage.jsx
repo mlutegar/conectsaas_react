@@ -1,37 +1,24 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
-import {PostContainer, PostTitle, PostContent, PostImage, PostInfo, PostWrapper} from "./Style";
+import { PostContainer, PostTitle, PostContent, PostImage, PostInfo, PostWrapper } from "./Style";
 import RelatedNews from "../RelatedNews/RelatedNews";
 import MaisNoticias from "../MaisNoticias/MaisNoticias";
 import CompartilharNoticia from "../CompartilharNoticia/CompartilharNoticia";
+import WordPressApi from "../../services/wordpressApi";
 
 const PostPage = () => {
-    const {slug} = useParams();
+    const { slug } = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/posts?slug=${slug}`);
-                const data = await response.json();
-
-                if (data.length > 0) {
-                    const postData = data[0];
-
-                    let imageUrl = "/fallback.jpg";
-                    if (postData.featured_media) {
-                        try {
-                            const mediaResponse = await fetch(`https://api.conectasaas.com.br/wp-json/wp/v2/media/${postData.featured_media}`);
-                            const mediaData = await mediaResponse.json();
-                            imageUrl = mediaData.source_url;
-                        } catch {
-                            console.error("Erro ao carregar imagem do post.");
-                        }
-                    }
-
-                    setPost({...postData, imageUrl});
+                let postData = await WordPressApi.getPostBySlug(slug);
+                if (postData) {
+                    postData = await WordPressApi.getPostWithMedia(postData);
+                    setPost(postData);
                 }
                 setLoading(false);
             } catch (error) {
@@ -52,24 +39,24 @@ const PostPage = () => {
         <>
             <PostWrapper>
                 <PostContainer>
-                    <PostTitle dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
-                    <PostImage src={post.imageUrl} alt={post.title.rendered}/>
+                    <PostTitle dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                    <PostImage src={post.imageUrl} alt={post.title.rendered} />
                     <PostInfo>📅 {new Date(post.date).toLocaleDateString()}</PostInfo>
                     <PostContent>
                         {paragraphs.map((paragraph, index) => (
                             <div key={index} className={index === 0 ? "primeiro-paragrafo" : ""}>
-                                <div dangerouslySetInnerHTML={{__html: paragraph + "</p>"}}/>
-                                {index === 3 && paragraphs.length > 4 && <RelatedNews categoryId={post.categories[0]}/>}
+                                <div dangerouslySetInnerHTML={{ __html: paragraph + "</p>" }} />
+                                {index === 3 && paragraphs.length > 4 && <RelatedNews categoryId={post.categories[0]} />}
                             </div>
                         ))}
                     </PostContent>
-                    <CompartilharNoticia url={window.location.href} title={post.title.rendered}/>
+                    <CompartilharNoticia url={window.location.href} title={post.title.rendered} />
                 </PostContainer>
 
                 {/* Adiciona a Sidebar ao lado do Post */}
-                <Sidebar/>
+                <Sidebar />
             </PostWrapper>
-            <MaisNoticias categoryId={post.categories[0]}/>
+            <MaisNoticias categoryId={post.categories[0]} />
         </>
     );
 };
