@@ -3,6 +3,7 @@ import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
 import { BannerContainer, MainPost, SidePosts } from "./Style";
 import WordPressApi from "../../services/wordpressApi";
+import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 
 const Banner = memo(({ categoriaNome = null }) => {
     const [posts, setPosts] = useState([]);
@@ -75,7 +76,7 @@ const Banner = memo(({ categoriaNome = null }) => {
             {/* Posts Secundários - 2 colunas e 2 linhas */}
             <SidePosts>
                 {posts.slice(1, 5).map((post) => (
-                    <CardSecundario key={post.id} post={post} />
+                    <CardPequenoBanner key={post.id} post={post} />
                 ))}
             </SidePosts>
         </BannerContainer>

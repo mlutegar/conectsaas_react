@@ -7,8 +7,6 @@ import Post from "./pages/Post";
 import Search from "./pages/Search";
 import Author from "./pages/Author";
 import Categoria from "./pages/Categoria";
-import Teste from "./pages/Teste";
-import TesteAPI from "./pages/TesteAPI";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -21,8 +19,6 @@ root.render(<React.StrictMode>
             <Route path="/search/:query" element={<Search />} />
             <Route path="/autor/:slug" element={<Author />} />
             <Route path="/categoria/:slug" element={<Categoria />} />
-            <Route path="/teste" element={<Teste/>} />
-            <Route path="/teste-api" element={<TesteAPI/>} />
         </Routes>
     </HashRouter>
 </React.StrictMode>);

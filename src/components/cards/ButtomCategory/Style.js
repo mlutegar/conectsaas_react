@@ -8,13 +8,13 @@ export const CardCategory = styled.div`
     margin: 10px 0;
     border-radius: 0;
     font-family: "Didact Gothic", serif;
-    font-size: 1.25rem;
+    font-size: ${({ modoPequeno }) => (modoPequeno ? "0.875rem" : "1.25rem")};
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     display: flex;
-    width: 6.85369rem;
-    height: 1.63763rem;
+    width: ${({ modoPequeno }) => (modoPequeno ? "5.0625rem" : "6.85369rem")};
+    height: ${({ modoPequeno }) => (modoPequeno ? "1.20963rem" : "1.63763rem")};
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;

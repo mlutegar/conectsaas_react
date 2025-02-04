@@ -14,8 +14,8 @@ export const CardContainer = styled.div`
 `;
 
 export const CardImage = styled.img`
-    width: 100%;
-    height: auto;
+    width: 125%;
+    height: 9.27rem;
     border-radius: 6px;
     object-fit: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
@@ -49,10 +49,13 @@ export const CardCategory = styled.p`
     }
 `;
 
-export const CardTitle = styled.h2`
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
+export const CardTitle = styled.div`
+    color: #000;
+    font-family: "Libre Franklin";
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     color: ${({ modoEscuro }) => (modoEscuro ? "white" : "black")};
     text-decoration: none;
     transition: color 0.4s ease-in-out;
@@ -67,14 +70,18 @@ export const CardTitle = styled.h2`
 `;
 
 export const CardInfo = styled.p`
-    font-size: 12px;
     color: ${({ modoEscuro }) => (modoEscuro ? "#ddd" : "var(--primaria)")};
-    font-weight: bold;
     margin-top: 3px;
     display: flex;
     align-items: center;
     gap: 5px;
     transition: color 0.4s ease-in-out;
+
+    font-family: "Libre Franklin";
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 
     ${CardContainer}:hover & {
         color: var(--primaria);

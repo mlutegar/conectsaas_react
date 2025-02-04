@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/react-base-project.iml" filepath="$PROJECT_DIR$/.idea/react-base-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/conectasaas-react.iml" filepath="$PROJECT_DIR$/.idea/conectasaas-react.iml" />
     </modules>
   </component>
 </project>

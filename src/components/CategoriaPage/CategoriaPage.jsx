@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { CategoryContainer, NewsList } from "./Style";
-import CardSecundario from "../cards/CardSecundario/CardSecundario";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {CategoryContainer, Titulo} from "./Style";
 import Banner from "../Banner/Banner";
 import WordPressApi from "../../services/wordpressApi";
+import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
+import Sidebar from "../Sidebar/Sidebar";
+import {PostContainer, PostWrapper} from "../PostPage/Style";
 
 const CategoryPage = () => {
-    const { slug } = useParams(); // Obtém o slug da categoria pela URL
+    const {slug} = useParams(); // Obtém o slug da categoria pela URL
     const [category, setCategory] = useState(null);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ const CategoryPage = () => {
 
                 // Buscar posts dessa categoria
                 console.log(`🔍 Buscando posts da categoria ID: ${categoryData.id}`);
-                let postsData = await WordPressApi.getPosts({ categories: categoryData.id, per_page: 10 });
+                let postsData = await WordPressApi.getPosts({categories: categoryData.id, per_page: 10});
                 postsData = await WordPressApi.getPostsWithMedia(postsData);
 
                 setPosts(postsData);
@@ -49,13 +51,17 @@ const CategoryPage = () => {
 
     return (
         <CategoryContainer>
-            <h1>{category.name.toUpperCase()}</h1>
-            <Banner />
-            <NewsList>
+            <Titulo>{category.name.toUpperCase()}</Titulo>
+            <Banner/>
+            <PostWrapper>
+                <PostContainer>
                 {posts.slice(4).map((post) => (
-                    <CardSecundario key={post.id} post={post} />
+                    <CardPequenoBanner key={post.id} post={post}/>
                 ))}
-            </NewsList>
+                </PostContainer>
+
+                <Sidebar />
+            </PostWrapper>
         </CategoryContainer>
     );
 };

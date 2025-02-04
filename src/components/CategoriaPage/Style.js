@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const CategoryContainer = styled.div`
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 20px;
-    
-    h1 {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
+`;
+
+export const Titulo = styled.div`
+    text-align: left;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 20px 20px 0;
 `;
 
 export const BannerContainer = styled.div`
@@ -27,15 +27,5 @@ export const BannerContainer = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
-    }
-`;
-
-export const NewsList = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
     }
 `;
