@@ -9,12 +9,22 @@ export const CategoriaSecaoStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 `;
 
 export const Container = styled.div`
     max-width: 1440px;
     margin: 0 auto;
     color: white;
+`;
+
+export const ContainerNoticiasSecundarias = styled.div`
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 export const CategoriaTitle = styled.h2`
@@ -25,6 +35,10 @@ export const CategoriaTitle = styled.h2`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
+    
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 export const NoticiasList = styled.div`

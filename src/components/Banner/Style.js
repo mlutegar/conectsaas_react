@@ -7,27 +7,36 @@ export const BannerContainer = styled.section`
     padding: 20px;
     max-width: 1440px;
     margin: auto;
-    
+
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
         grid-template-areas:
       "principal"
       "secundarios";
+        padding: 0;
     }
 `;
 
 export const MainPost = styled.div`
     grid-area: principal;
     width: 100%;
+
     img {
         width: 100%;
         height: auto;
         border-radius: 8px;
     }
+
     h2 {
         font-size: 20px;
         font-weight: bold;
         margin-top: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        img {
+            border-radius: 0;
+        }
     }
 `;
 
@@ -46,11 +55,13 @@ export const SidePosts = styled.div`
 
 export const PostItem = styled.div`
     position: relative;
+
     img {
         width: 100%;
         height: auto;
         border-radius: 8px;
     }
+
     h3 {
         font-size: 16px;
         font-weight: bold;

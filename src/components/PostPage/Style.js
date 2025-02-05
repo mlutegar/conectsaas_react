@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {SidebarContainer} from "../Sidebar/Style";
 
 export const PostContainer = styled.div`
     max-width: 800px;
@@ -61,5 +62,9 @@ export const PostWrapper = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
+        
+        ${SidebarContainer} {
+            display: none;
+        }
     }
 `;

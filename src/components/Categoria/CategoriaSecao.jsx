@@ -1,9 +1,10 @@
-import { memo, useEffect, useState } from "react";
-import { CategoriaSecaoStyle, CategoriaTitle, Container, NoticiasList } from "./Style";
+import {memo, useEffect, useState} from "react";
+import {CategoriaSecaoStyle, CategoriaTitle, Container, ContainerNoticiasSecundarias, NoticiasList} from "./Style";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
+import CardSecundario from "../cards/CardSecundario/CardSecundario";
 
-const CategoriaSecao = memo(({ categoriaNome, fundoCinza = false }) => {
+const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);
     const [categoriaId, setCategoriaId] = useState(null);
 
@@ -31,7 +32,7 @@ const CategoriaSecao = memo(({ categoriaNome, fundoCinza = false }) => {
             if (!categoriaId) return;
 
             try {
-                let posts = await WordPressApi.getPosts({ categories: categoriaId, per_page: 3 });
+                let posts = await WordPressApi.getPosts({categories: categoriaId, per_page: 3});
                 posts = await WordPressApi.getPostsWithMedia(posts);
                 setNoticias(posts);
             } catch (error) {
@@ -49,9 +50,15 @@ const CategoriaSecao = memo(({ categoriaNome, fundoCinza = false }) => {
             <Container>
                 <CategoriaTitle fundoCinza={fundoCinza}>{categoriaNome.toUpperCase()}</CategoriaTitle>
                 <NoticiasList>
-                    {noticias.map((post) => (
-                        <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} />
-                    ))}
+                    {noticias.map((post, index) =>
+                        index === 0 ? (
+                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true}/>
+                        ) : (
+                            <ContainerNoticiasSecundarias>
+                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza}/>
+                            </ContainerNoticiasSecundarias>
+                        )
+                    )}
                 </NoticiasList>
             </Container>
         </CategoriaSecaoStyle>

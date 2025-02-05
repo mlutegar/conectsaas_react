@@ -70,6 +70,7 @@ const Banner = memo(({ categoriaNome = null }) => {
                     tamanhoMenor={true}
                     // Passa o nome da categoria para o CardPrimario para exibição no botão
                     catName={categoriaData?.name}
+                    primeiro={true}
                 />
             </MainPost>
 
