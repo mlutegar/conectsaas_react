@@ -26,5 +26,11 @@ export const CardCategory = styled.div`
                 modoEscuro ? "var(--secundaria)" : "var(--primaria)"};
         cursor: pointer;
     }
+    
+    @media (max-width: 768px) {
+        font-size: 1.25rem;
+        width: 6.85369rem;
+        height: 1.63763rem;
+    }
 
 `;

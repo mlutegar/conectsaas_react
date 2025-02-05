@@ -46,8 +46,6 @@ export const CardImage = styled.img`
     }
     
     @media (max-width: 480px) {
-        width: 20.5rem;
-        height: 10.6875rem;
         flex-shrink: 0;
         border-radius: 0.625rem;
         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);

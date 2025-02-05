@@ -50,6 +50,7 @@ export const SidePosts = styled.div`
     @media (max-width: 768px) {
         grid-template-columns: 1fr; /* Apenas 1 coluna no mobile */
         grid-template-rows: auto;
+        padding: 0 20px;
     }
 `;
 

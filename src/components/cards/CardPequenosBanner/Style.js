@@ -36,8 +36,6 @@ export const CardImage = styled.img`
     }
 
     @media (max-width: 480px) {
-        width: 20.5rem;
-        height: 10.6875rem;
         flex-shrink: 0;
         border-radius: 0.625rem;
         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
@@ -48,25 +46,8 @@ export const CardContent = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 0 20px;
 `;
 
-export const CardCategory = styled.p`
-    background: ${({ modoEscuro }) => (modoEscuro ? "#444" : "#333")};
-    color: ${({ modoEscuro }) => (modoEscuro ? "white" : "white")};
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 4px 8px;
-    display: inline-block;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    transition: color 0.4s ease-in-out;
-
-    ${CardContainer}:hover & {
-        color: var(--primaria);
-    }
-`;
 
 export const CardTitle = styled.div`
     color: #000;
