@@ -17,6 +17,7 @@ export const Container = styled.div`
     color: ${(props) => (props.darkMode ? "white" : "black")};
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 30px 0;
+    margin-top: 4.75rem;
     h2 {
         width: 80%;
         color: ${(props) => (props.darkMode ? "white" : "black")};
