@@ -8,11 +8,12 @@ import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     const [posts, setPosts] = useState([]);
     const [categoriaData, setCategoriaData] = useState(null);
+    const [loading, setLoading] = useState(true);
     const isFetched = useRef(false);
 
     useEffect(() => {
         const fetchCategoriaData = async () => {
-            if (!categoriaNome) return;
+            if (!categoriaNome) return; // Se não houver categoria específica, pula essa parte
 
             try {
                 const categoria = await WordPressApi.getCategoryBySlug(categoriaNome);
@@ -31,13 +32,13 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     }, [categoriaNome]);
 
     useEffect(() => {
-        if (isFetched.current) return;
+        if (isFetched.current || (categoriaNome && !categoriaData)) return;
         isFetched.current = true;
 
         const fetchPosts = async () => {
             try {
+                setLoading(true);
                 const params = { per_page: 5 };
-                // Se houver dados da categoria, adiciona o ID aos parâmetros
                 if (categoriaData?.id) {
                     params.categories = categoriaData.id;
                 }
@@ -47,36 +48,36 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
                 data = await WordPressApi.getPostsWithMedia(data);
 
                 setPosts(data);
+                setLoading(false);
             } catch (error) {
                 console.error("❌ Erro ao buscar posts:", error);
+                setLoading(false);
             }
         };
 
-        // Se não for passada uma categoria específica ou se já tivermos os dados da categoria, buscamos os posts
-        if (categoriaNome === null || (categoriaData && categoriaData.id)) {
-            fetchPosts();
-        }
+        fetchPosts();
     }, [categoriaData, categoriaNome]);
 
-    if (posts.length === 0) return <p>Carregando notícias...</p>;
+    if (loading) return <p>Carregando notícias...</p>;
+
+    if (posts.length === 0) return <p>Nenhuma notícia encontrada.</p>;
 
     return (
         <BannerContainer>
-            {/* Post Principal */}
             <MainPost>
                 <CardPrimario
                     post={posts[0]}
                     tamanhoMenor={true}
-                    // Passa o nome da categoria para o CardPrimario para exibição no botão
                     catName={categoriaData?.name}
                     primeiro={true}
+                    ocultarCategoria={paginaCategoria}
                 />
             </MainPost>
 
             {/* Posts Secundários - 2 colunas e 2 linhas */}
             <SidePosts>
                 {posts.slice(1, 5).map((post) => (
-                    <CardPequenoBanner key={post.id} post={post} />
+                    <CardPequenoBanner key={post.id} post={post} hideCategory={paginaCategoria} />
                 ))}
             </SidePosts>
         </BannerContainer>
