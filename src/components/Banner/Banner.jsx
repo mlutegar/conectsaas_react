@@ -7,13 +7,12 @@ import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 
 const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     const [posts, setPosts] = useState([]);
-    // Em vez de armazenar apenas o ID, vamos armazenar os dados completos da categoria
     const [categoriaData, setCategoriaData] = useState(null);
     const isFetched = useRef(false);
 
     useEffect(() => {
         const fetchCategoriaData = async () => {
-            if (!categoriaNome) return; // Se não houver categoria específica, pula essa parte
+            if (!categoriaNome) return;
 
             try {
                 const categoria = await WordPressApi.getCategoryBySlug(categoriaNome);

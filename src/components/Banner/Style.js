@@ -4,7 +4,7 @@ export const BannerContainer = styled.section`
     display: grid;
     grid-template-areas: "principal principal secundarios secundarios";
     gap: 20px;
-    padding: 20px;
+    padding: 20px 0;
     max-width: 1440px;
     margin: auto;
 
