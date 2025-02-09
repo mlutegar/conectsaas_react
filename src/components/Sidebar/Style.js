@@ -15,7 +15,7 @@ export const SidebarContainer = styled.aside`
 `;
 
 export const SearchBar = styled.div`
-    display: flex;
+    display: none;
     align-items: center;
     background: #333;
     padding: 8px;
