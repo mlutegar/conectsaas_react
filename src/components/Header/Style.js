@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Top = styled.header`
     background: #8b0000; /* Vermelho escuro */
-    padding: 15px 20px;
+    padding: 15px 20px 10px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -45,7 +45,7 @@ const Footer = () => {
                 <FooterSection>
                     <h4>INSTITUCIONAL</h4>
                     <Link to="/fale-conosco">Fale conosco</Link>
-                    <Link to="/sobre-nos">Sobre nós</Link>
+                    <Link to="/termos-de-uso">Termos de uso</Link>
                 </FooterSection>
 
                 {/* Redes Sociais */}

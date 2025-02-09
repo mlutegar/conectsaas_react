@@ -8,6 +8,10 @@ export const CardContainer = styled.div`
     &:hover {
         color: var(--primaria);
     }
+    
+    a{
+        max-width: ${({ tipo }) => (tipo === "categoria" ? "29.1875rem;" : "100%")};
+    }
 `;
 
 export const CardImage = styled.img`
@@ -16,6 +20,7 @@ export const CardImage = styled.img`
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
     transition: filter 0.4s ease-in-out;
     border-radius: 0.625rem;
+    
     
     @media (max-width: 768px) {
         border-radius: ${({ primeiro }) => (primeiro ? "0" : "0.625rem")};

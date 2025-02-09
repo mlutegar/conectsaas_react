@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SearchContainer = styled.div`
     max-width: 800px;
-    margin: 40px auto;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

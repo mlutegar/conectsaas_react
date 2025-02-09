@@ -52,10 +52,10 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
                 <NoticiasList>
                     {noticias.map((post, index) =>
                         index === 0 ? (
-                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true}/>
+                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true} ocultarCategoria={true} tipo={"categoria"}/>
                         ) : (
                             <ContainerNoticiasSecundarias>
-                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza}/>
+                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza} ocultarCategoria={true}/>
                             </ContainerNoticiasSecundarias>
                         )
                     )}

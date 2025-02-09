@@ -1,33 +1,27 @@
-// services/wordpressApi.js
-import { getCache, setCache } from '../utils/cache';
+import { getCache, setCache } from "../utils/cache";
 
-const API_BASE_URL = 'https://api.conectasaas.com.br/wp-json/wp/v2';
+const API_BASE_URL = "https://api.conectasaas.com.br/wp-json/wp/v2";
 
 class WordPressApi {
-    /**
-     * Tenta buscar os dados da URL a partir do cache.
-     * Caso não exista ou esteja expirado, faz o fetch, armazena no cache e retorna os dados.
-     *
-     * @param {string} url - A URL da requisição.
-     * @returns {Promise<any>} - Os dados da resposta.
-     */
+    static isLoading = false; // 🔹 Controle do carregamento global
+
     static async fetchWithCache(url) {
-        // Verifica se há dados no cache
         const cachedData = getCache(url);
         if (cachedData) {
             console.log(`Cache hit para: ${url}`);
             return cachedData;
         }
 
-        console.log(`Cache miss para: ${url}. Fazendo fetch...`);
+        console.log(`🔄 Cache miss. Buscando: ${url}`);
+        WordPressApi.isLoading = true; // Ativa o carregamento
         const response = await fetch(url);
         const data = await response.json();
-        // Armazena a resposta no cache
+        WordPressApi.isLoading = false; // Desativa após a requisição
+
         setCache(url, data);
         return data;
     }
 
-    // Posts
     static async getPosts(params = {}) {
         const queryParams = new URLSearchParams(params).toString();
         const url = `${API_BASE_URL}/posts?${queryParams}`;

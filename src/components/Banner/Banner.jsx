@@ -5,7 +5,7 @@ import { BannerContainer, MainPost, SidePosts } from "./Style";
 import WordPressApi from "../../services/wordpressApi";
 import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 
-const Banner = memo(({ categoriaNome = null }) => {
+const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     const [posts, setPosts] = useState([]);
     // Em vez de armazenar apenas o ID, vamos armazenar os dados completos da categoria
     const [categoriaData, setCategoriaData] = useState(null);

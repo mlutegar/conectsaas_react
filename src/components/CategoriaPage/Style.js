@@ -10,7 +10,7 @@ export const Titulo = styled.div`
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    padding: 20px 20px 0;
+    padding: 20px 0 0;
 `;
 
 export const BannerContainer = styled.div`

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
-import { Container, MaisNoticiasStyle, MaisNoticiasTitle, NoticiasList } from "./Style";
+import {useEffect, useState} from "react";
+import {Container, MaisNoticiasStyle, MaisNoticiasTitle, NoticiasList} from "./Style";
 import CardTextoLateral from "../cards/CardTextoLateral/CardTextoLateral";
 import WordPressApi from "../../services/wordpressApi";
+import {Conteudo} from "../../Style";
 
-const MaisNoticias = ({ categoryId }) => {
+const MaisNoticias = ({categoryId}) => {
     const [noticias, setNoticias] = useState([]);
 
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
-                let posts = await WordPressApi.getPosts({ categories: categoryId, per_page: 5 });
+                let posts = await WordPressApi.getPosts({categories: categoryId, per_page: 5});
                 posts = await WordPressApi.getPostsWithMedia(posts);
                 setNoticias(posts);
             } catch (error) {
@@ -26,14 +27,16 @@ const MaisNoticias = ({ categoryId }) => {
 
     return (
         <MaisNoticiasStyle>
-            <Container>
-                <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
-                <NoticiasList>
-                    {noticias.map((post) => (
-                        <CardTextoLateral key={post.id} post={post} modoEscuro={true} />
-                    ))}
-                </NoticiasList>
-            </Container>
+            <Conteudo>
+                <Container>
+                    <MaisNoticiasTitle>MAIS NOTÍCIAS</MaisNoticiasTitle>
+                    <NoticiasList>
+                        {noticias.map((post) => (
+                            <CardTextoLateral key={post.id} post={post} modoEscuro={true}/>
+                        ))}
+                    </NoticiasList>
+                </Container>
+            </Conteudo>
         </MaisNoticiasStyle>
     );
 };

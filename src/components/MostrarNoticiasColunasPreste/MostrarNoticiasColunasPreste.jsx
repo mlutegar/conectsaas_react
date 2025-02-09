@@ -61,10 +61,11 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
                         post={noticias[categoriaKey][0]}
                         primeiro={true}
                         catName={categoriasData[categoriaKey]?.name}
+                        ocultarCategoria={true}
                     />
                     <NoticiasSecundarias>
                         {noticias[categoriaKey].slice(1, 5).map((post) => (
-                            <CardDestaque key={post.id} post={post} />
+                            <CardDestaque key={post.id} post={post} ocultarCategoria={true}/>
                         ))}
                     </NoticiasSecundarias>
                 </>

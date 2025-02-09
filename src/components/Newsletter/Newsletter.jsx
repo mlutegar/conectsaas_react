@@ -22,13 +22,27 @@ const Newsletter = ({ darkMode = false }) => {
         setMessage("");
 
         try {
-            const response = await WordPressApi.subscribeNewsletter({ nome, email });
+        const formData = new FormData();
+        formData.append("nome", nome);
+        formData.append("email", email);
+
+        const response = await fetch("https://www.conectasaas.com.br/api/inscricao.php", {
+            method: "POST",
+            body: formData,
+        });
+
+        const data = await response.text();
+
+        if (response.ok) {
             setMessage("Inscrição realizada com sucesso!");
             setNome("");
             setEmail("");
             setAceitoTermos(false);
+        } else {
+            setMessage(`Erro: ${data}`);
+        }
         } catch (error) {
-            setMessage(error.message);
+        setMessage("Erro ao tentar se inscrever. Tente novamente mais tarde.");
         } finally {
             setLoading(false);
         }

@@ -52,11 +52,11 @@ const CategoryPage = () => {
     return (
         <CategoryContainer>
             <Titulo>{category.name.toUpperCase()}</Titulo>
-            <Banner/>
+            <Banner paginaCategoria={true} categoriaNome={slug} />
             <PostWrapper>
                 <PostContainer>
                 {posts.slice(4).map((post) => (
-                    <CardPequenoBanner key={post.id} post={post}/>
+                    <CardPequenoBanner key={post.id} post={post} hideCategory={true}/>
                 ))}
                 </PostContainer>
 
