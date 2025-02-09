@@ -20,6 +20,7 @@ export const BannerContainer = styled.section`
 export const MainPost = styled.div`
     grid-area: principal;
     width: 100%;
+    max-width: 44.9375rem;
 
     img {
         width: 100%;

@@ -4,13 +4,14 @@ export const CardContainer = styled.div`
     border-radius: ${({ primeiro }) => (primeiro ? "0" : "8px")};
     overflow: hidden;
     transition: color 0.4s ease-in-out;
-
+    max-width: ${({ tipo }) => (tipo === "categoria" ? "29.1875rem" : "44.9375rem")};
+    
     &:hover {
         color: var(--primaria);
     }
     
     a{
-        max-width: ${({ tipo }) => (tipo === "categoria" ? "29.1875rem;" : "100%")};
+        max-width: ${({ tipo }) => (tipo === "categoria" ? "29.1875rem;" : "44.9375rem")};
     }
 `;
 

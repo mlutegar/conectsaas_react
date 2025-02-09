@@ -62,6 +62,7 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
                         primeiro={true}
                         catName={categoriasData[categoriaKey]?.name}
                         ocultarCategoria={true}
+                        tipo={"categoria"}
                     />
                     <NoticiasSecundarias>
                         {noticias[categoriaKey].slice(1, 5).map((post) => (

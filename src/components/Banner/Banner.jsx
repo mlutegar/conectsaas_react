@@ -1,44 +1,48 @@
-import { useEffect, useState, useRef, memo } from "react";
+import { useEffect, useState, memo } from "react";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
-import CardSecundario from "../cards/CardSecundario/CardSecundario";
+import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 import { BannerContainer, MainPost, SidePosts } from "./Style";
 import WordPressApi from "../../services/wordpressApi";
-import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
 
 const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     const [posts, setPosts] = useState([]);
     const [categoriaData, setCategoriaData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const isFetched = useRef(false);
 
+    // 🔹 Busca os dados da categoria com base no slug
     useEffect(() => {
         const fetchCategoriaData = async () => {
-            if (!categoriaNome) return; // Se não houver categoria específica, pula essa parte
+            if (!categoriaNome) {
+                setCategoriaData(null);
+                return;
+            }
 
             try {
+                setLoading(true);
                 const categoria = await WordPressApi.getCategoryBySlug(categoriaNome);
                 if (categoria) {
                     setCategoriaData(categoria);
                     console.log(`✅ Categoria "${categoriaNome}" encontrada. ID: ${categoria.id}`);
                 } else {
                     console.warn(`⚠️ Categoria "${categoriaNome}" não encontrada.`);
+                    setCategoriaData(null);
                 }
             } catch (error) {
                 console.error("❌ Erro ao buscar categoria:", error);
+                setCategoriaData(null);
             }
         };
 
         fetchCategoriaData();
     }, [categoriaNome]);
 
+    // 🔹 Busca os posts quando a categoria mudar
     useEffect(() => {
-        if (isFetched.current || (categoriaNome && !categoriaData)) return;
-        isFetched.current = true;
-
         const fetchPosts = async () => {
             try {
                 setLoading(true);
-                const params = { per_page: 5 };
+                let params = { per_page: 5 };
+
                 if (categoriaData?.id) {
                     params.categories = categoriaData.id;
                 }
@@ -55,7 +59,9 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
             }
         };
 
-        fetchPosts();
+        if (categoriaNome === null || categoriaData !== null) {
+            fetchPosts();
+        }
     }, [categoriaData, categoriaNome]);
 
     if (loading) return <p>Carregando notícias...</p>;
@@ -64,11 +70,12 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
 
     return (
         <BannerContainer>
+            {/* Post Principal */}
             <MainPost>
                 <CardPrimario
                     post={posts[0]}
                     tamanhoMenor={true}
-                    catName={categoriaData?.name}
+                    catName={paginaCategoria ? categoriaData?.name : posts[0]?.categories?.[0]?.name}
                     primeiro={true}
                     ocultarCategoria={paginaCategoria}
                 />
@@ -77,7 +84,12 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
             {/* Posts Secundários - 2 colunas e 2 linhas */}
             <SidePosts>
                 {posts.slice(1, 5).map((post) => (
-                    <CardPequenoBanner key={post.id} post={post} hideCategory={paginaCategoria} />
+                    <CardPequenoBanner
+                        key={post.id}
+                        post={post}
+                        hideCategory={paginaCategoria}
+                        catName={post.categories?.[0]?.name}
+                    />
                 ))}
             </SidePosts>
         </BannerContainer>
