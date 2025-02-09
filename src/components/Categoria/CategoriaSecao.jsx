@@ -1,5 +1,5 @@
 import {memo, useEffect, useState} from "react";
-import {CategoriaSecaoStyle, CategoriaTitle, Container, ContainerNoticiasSecundarias, NoticiasList} from "./Style";
+import {CategoriaSecaoStyle, CategoriaTitle,CategoriaTitleDiv, Container, ContainerNoticiasSecundarias, NoticiasList} from "./Style";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
@@ -50,12 +50,13 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
         <CategoriaSecaoStyle fundoCinza={fundoCinza}>
             <Container>
 
-
-                <CategoriaTitle fundoCinza={fundoCinza}>
-                    <Link to={`/categoria/${categoriaNome}`} style={{textDecoration: 'none', color: 'inherit'}}>
-                        {categoriaNome.toUpperCase()}
-                    </Link>
-                </CategoriaTitle>
+                <CategoriaTitleDiv>
+                    <CategoriaTitle fundoCinza={fundoCinza}>
+                        <Link to={`/categoria/${categoriaNome}`} style={{textDecoration: 'none', color: 'inherit'}}>
+                            {categoriaNome.toUpperCase()}
+                        </Link>
+                    </CategoriaTitle>
+                </CategoriaTitleDiv>
 
                 <NoticiasList>
                     {noticias.map((post, index) =>

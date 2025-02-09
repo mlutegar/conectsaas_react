@@ -37,6 +37,7 @@ export const CategoriaTitulo = styled.h2`
     line-height: normal;
     text-transform: uppercase;
     margin-top: 4.75rem;
+    margin-bottom: 0;
 
     @media (max-width: 768px) {
         margin-left: 20px;

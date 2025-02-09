@@ -42,6 +42,14 @@ export const CategoriaTitle = styled.h2`
     }
 `;
 
+export const CategoriaTitleDiv = styled.div`
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+    margin-bottom: 19.920px;
+    display: flex;
+    
+`;
+
 export const NoticiasList = styled.div`
     display: flex;
     flex-wrap: nowrap; /* No desktop, mantém as notícias lado a lado */
