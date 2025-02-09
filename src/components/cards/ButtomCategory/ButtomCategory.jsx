@@ -5,7 +5,7 @@ import { CardCategory as StyledCardCategory } from "./Style";
 const CardCategory = ({ name, slug, modoEscuro, modoPequeno = false }) => {
     // Caso não seja fornecido o slug, cria um a partir do nome
     const categorySlug =
-        slug || (name ? name.toLowerCase().replace(/\s+/g, "-") : "categoria");
+        slug || (name ? name : "categoria");
 
     return (
         <Link to={`/categoria/${categorySlug}`}>

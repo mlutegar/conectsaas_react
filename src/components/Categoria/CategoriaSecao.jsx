@@ -3,6 +3,7 @@ import {CategoriaSecaoStyle, CategoriaTitle, Container, ContainerNoticiasSecunda
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
+import {Link} from "react-router-dom"; // Se estiver usando React Router
 
 const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);
@@ -48,14 +49,23 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     return (
         <CategoriaSecaoStyle fundoCinza={fundoCinza}>
             <Container>
-                <CategoriaTitle fundoCinza={fundoCinza}>{categoriaNome.toUpperCase()}</CategoriaTitle>
+
+
+                <CategoriaTitle fundoCinza={fundoCinza}>
+                    <Link to={`/categoria/${categoriaNome}`} style={{textDecoration: 'none', color: 'inherit'}}>
+                        {categoriaNome.toUpperCase()}
+                    </Link>
+                </CategoriaTitle>
+
                 <NoticiasList>
                     {noticias.map((post, index) =>
                         index === 0 ? (
-                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true} ocultarCategoria={true} tipo={"categoria"}/>
+                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true}
+                                          ocultarCategoria={true} tipo={"categoria"}/>
                         ) : (
                             <ContainerNoticiasSecundarias>
-                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza} ocultarCategoria={true}/>
+                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza}
+                                                ocultarCategoria={true}/>
                             </ContainerNoticiasSecundarias>
                         )
                     )}

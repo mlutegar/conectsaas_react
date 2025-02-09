@@ -8,33 +8,62 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
     const [posts, setPosts] = useState([]);
     const [categoriaData, setCategoriaData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [categoryMap, setCategoryMap] = useState({}); // Mapeia IDs para nomes das categorias
 
-    // 🔹 Busca os dados da categoria com base no slug
+    console.log(`AnaliseAtual ➡️ Renderizando Banner | categoriaNome: ${categoriaNome} | paginaCategoria: ${paginaCategoria}`);
+
+    // 🔹 Busca os dados da categoria com base no slug (se estivermos em uma página de categoria)
     useEffect(() => {
         const fetchCategoriaData = async () => {
             if (!categoriaNome) {
+                console.log("AnaliseAtual ❌ Nenhuma categoria específica. Exibindo posts de todas as categorias.");
                 setCategoriaData(null);
                 return;
             }
 
             try {
                 setLoading(true);
+                console.log(`AnaliseAtual 🔍 Buscando categoria "${categoriaNome}"...`);
+
                 const categoria = await WordPressApi.getCategoryBySlug(categoriaNome);
+
                 if (categoria) {
+                    console.log(`AnaliseAtual ✅ Categoria "${categoriaNome}" encontrada. ID: ${categoria.id}`);
                     setCategoriaData(categoria);
-                    console.log(`✅ Categoria "${categoriaNome}" encontrada. ID: ${categoria.id}`);
                 } else {
-                    console.warn(`⚠️ Categoria "${categoriaNome}" não encontrada.`);
+                    console.warn(`AnaliseAtual ⚠️ Categoria "${categoriaNome}" não encontrada.`);
                     setCategoriaData(null);
                 }
             } catch (error) {
-                console.error("❌ Erro ao buscar categoria:", error);
+                console.error("AnaliseAtual ❌ Erro ao buscar categoria:", error);
                 setCategoriaData(null);
             }
         };
 
         fetchCategoriaData();
     }, [categoriaNome]);
+
+    // 🔹 Busca os nomes das categorias para mapear ID → Nome
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                console.log("AnaliseAtual 🔍 Buscando todas as categorias...");
+                const categories = await WordPressApi.getCategories();
+
+                const categoryMap = categories.reduce((acc, category) => {
+                    acc[category.id] = category.name; // Associa ID ao Nome da Categoria
+                    return acc;
+                }, {});
+
+                setCategoryMap(categoryMap);
+                console.log("AnaliseAtual ✅ Mapeamento de categorias criado:", categoryMap);
+            } catch (error) {
+                console.error("AnaliseAtual ❌ Erro ao buscar categorias:", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     // 🔹 Busca os posts quando a categoria mudar
     useEffect(() => {
@@ -47,14 +76,16 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
                     params.categories = categoriaData.id;
                 }
 
-                console.log(`🔍 Buscando posts com os parâmetros:`, params);
+                console.log(`AnaliseAtual 🔍 Buscando posts com os parâmetros:`, params);
                 let data = await WordPressApi.getPosts(params);
                 data = await WordPressApi.getPostsWithMedia(data);
+
+                console.log(`AnaliseAtual ✅ ${data.length} posts carregados.`, data);
 
                 setPosts(data);
                 setLoading(false);
             } catch (error) {
-                console.error("❌ Erro ao buscar posts:", error);
+                console.error("AnaliseAtual ❌ Erro ao buscar posts:", error);
                 setLoading(false);
             }
         };
@@ -63,6 +94,11 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
             fetchPosts();
         }
     }, [categoriaData, categoriaNome]);
+
+    // 🔹 Debugando os posts carregados
+    useEffect(() => {
+        console.log("AnaliseAtual 📝 Posts armazenados no estado:", posts);
+    }, [posts]);
 
     if (loading) return <p>Carregando notícias...</p>;
 
@@ -75,7 +111,11 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
                 <CardPrimario
                     post={posts[0]}
                     tamanhoMenor={true}
-                    catName={paginaCategoria ? categoriaData?.name : posts[0]?.categories?.[0]?.name}
+                    catName={
+                        paginaCategoria
+                            ? categoriaData?.name // Se for na página de categoria, usa o nome correto
+                            : categoryMap[posts[0]?.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
+                    }
                     primeiro={true}
                     ocultarCategoria={paginaCategoria}
                 />
@@ -88,7 +128,11 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
                         key={post.id}
                         post={post}
                         hideCategory={paginaCategoria}
-                        catName={post.categories?.[0]?.name}
+                        catName={
+                            paginaCategoria
+                                ? categoriaData?.name // Se for na página de categoria, usa o nome correto
+                                : categoryMap[posts[0]?.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
+                        } // Pega o nome da categoria pelo ID
                     />
                 ))}
             </SidePosts>
