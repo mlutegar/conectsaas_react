@@ -28,6 +28,7 @@ export const Formulario = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 4.5rem;
     
     .form-container {
         display: flex;

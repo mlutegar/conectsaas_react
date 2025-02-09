@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MaisNoticiasStyle = styled.div`
-    display: flex;
     background: #222; /* Fundo cinza escuro */
     padding: 30px;
     margin-top: 40px;
