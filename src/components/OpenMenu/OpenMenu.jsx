@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MenuOverlay, MenuContainer, CloseButton, MenuList, SocialIcons } from "./Style";
-import { SvgClose, SvgInstagram, SvgLinkedin, SvgTwitter } from "../Svgs/Svgs";
+import {SvgBisk, SvgClose, SvgInstagram, SvgLinkedin, SvgTwitter, SvgX} from "../Svgs/Svgs";
 import WordPressApi from "../../services/wordpressApi";
+import {FaInstagram, FaLinkedin} from "react-icons/fa";
 
 const OpenMenu = ({ isOpen, onClose }) => {
     const [categories, setCategories] = useState([]);
@@ -45,15 +46,10 @@ const OpenMenu = ({ isOpen, onClose }) => {
                 <hr />
 
                 <SocialIcons>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                        <SvgTwitter />
-                    </a>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                        <SvgInstagram />
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                        <SvgLinkedin />
-                    </a>
+                    <a href="https://x.com/conectasaas" target="_blank" rel="noopener noreferrer"><SvgX /></a>
+                    <a href="https://bsky.app/profile/conectasaas.bsky.social" target="_blank" rel="noopener noreferrer"><SvgBisk /></a>
+                    <a href="https://www.instagram.com/conectasaas/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+                    <a href="https://www.linkedin.com/company/conecta-saas" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                 </SocialIcons>
             </MenuContainer>
         </MenuOverlay>
