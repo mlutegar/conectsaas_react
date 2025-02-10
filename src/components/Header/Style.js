@@ -204,7 +204,8 @@ export const SearchBarContainer = styled.div`
         border-radius: 0;
         padding: 11px;
         border: none;
-        background: black;
+        background: #333333;
+        margin: 0;
     }
 `;
 

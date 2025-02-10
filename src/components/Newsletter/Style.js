@@ -28,8 +28,15 @@ export const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     margin-top: 20px;
+
+    @media screen {
+        @media (max-width: 768px) {
+            padding: 20px;
+        }
+        
+    }
 `;
 
 export const InputField = styled.input`
@@ -49,9 +56,9 @@ export const InputField = styled.input`
 
 export const CheckboxContainer = styled.label`
     display: flex;
-    align-items: center;
     font-size: 14px;
     gap: 5px;
+    align-items: flex-start;
 
     a {
         color: #8b0000;
