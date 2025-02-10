@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export const TermosUsoPageStyle = styled.div`
     color: #000;
     font-family: "Libre Franklin";
@@ -13,5 +15,15 @@ export const TermosUsoPageStyle = styled.div`
     }
     ul {
         padding-left: 20px;
+        color: #333;
     }
+    
+    strong {
+        color: #333;
+    }
+`
+export const TermosUsoPageContainer = styled.div`
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 20px;
 `

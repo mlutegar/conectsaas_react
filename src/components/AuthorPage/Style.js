@@ -14,8 +14,15 @@ export const AuthorContainer = styled.div`
 `;
 
 export const AuthorInfo = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
     margin-bottom: 40px;
+    background: #333333;
+    height: 12rem;
+    border-radius: 10px;
 
     img {
         width: 100px;
@@ -25,6 +32,7 @@ export const AuthorInfo = styled.div`
     }
 
     h1 {
+        color: #fff;
         font-size: 1.8rem;
         font-weight: bold;
     }

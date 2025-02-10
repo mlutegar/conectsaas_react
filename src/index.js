@@ -8,6 +8,7 @@ import Search from "./pages/Search";
 import Author from "./pages/Author";
 import Categoria from "./pages/Categoria";
 import FaleConosco from "./pages/FaleConosco";
+import TermosUso from "./pages/TermosUso";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -21,6 +22,7 @@ root.render(<React.StrictMode>
             <Route path="/search/:query" element={<Search />} />
             <Route path="/autor/:slug" element={<Author />} />
             <Route path="/categoria/:slug" element={<Categoria />} />
+            <Route path="/termos-de-uso" element={<TermosUso />} />
         </Routes>
     </HashRouter>
 </React.StrictMode>);
