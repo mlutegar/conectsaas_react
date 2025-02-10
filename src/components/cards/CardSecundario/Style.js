@@ -8,6 +8,10 @@ export const CardContainer = styled.div`
     overflow: hidden;
     transition: color 0.4s ease-in-out;
 
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
+
     &:hover {
         color: var(--primaria);
     }

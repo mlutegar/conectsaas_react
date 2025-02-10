@@ -46,6 +46,7 @@ export const Formulario = styled.form`
     @media (max-width: 768px) {
         .form-container {
             flex-direction: column;
+            gap: 0;
         }
     }
 `;
@@ -56,6 +57,10 @@ export const Input = styled.input`
     width: 100%;
     height: 4.0625rem;
     padding: 0.5rem;
+    
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 export const TextArea = styled.textarea`
@@ -65,6 +70,10 @@ export const TextArea = styled.textarea`
     height: 8rem;
     padding: 0.5rem;
     resize: none;
+    
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 export const Label = styled.label`

@@ -7,19 +7,25 @@ export const CardContainer = styled.div`
     border-radius: 8px;
     overflow: hidden;
     transition: color 0.4s ease-in-out;
+    max-width: 20.625rem;
 
     &:hover {
         color: var(--primaria);
     }
 
+    a{
+        width: 100%;
+    }
+
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: center;
+        max-width: 22.625rem;
     }
 `;
 
 export const CardImage = styled.img`
-    width: 125%;
+    width: 100%;
     height: 9.27rem;
     border-radius: 6px;
     object-fit: cover;

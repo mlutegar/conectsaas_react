@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const CategoriaSecaoStyle = styled.div`
     background: ${(props) => (props.fundoCinza ? "#222" : "transparent")};
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
-    padding: 30px;
-    margin-top: 40px;
+    padding: ${(props) => (props.fundoCinza ? "40px 0" : "0")};
+    margin: 40px 0;
 
     display: flex;
     flex-direction: column;
@@ -23,9 +23,6 @@ export const Container = styled.div`
 `;
 
 export const ContainerNoticiasSecundarias = styled.div`
-    @media (max-width: 768px) {
-        padding: 0 20px;
-    }
 `;
 
 export const CategoriaTitle = styled.h2`
@@ -36,18 +33,31 @@ export const CategoriaTitle = styled.h2`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
-    
-    @media (max-width: 768px) {
-        padding: 0 20px;
-    }
 `;
 
 export const CategoriaTitleDiv = styled.div`
     border-bottom: 1px solid #ccc;
-    width: 80%;
+    width: 100%;
     margin-bottom: 19.920px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+        max-width: 90vw;
+        overflow-x: hidden;
+        margin: 19.920px 20px;
+    }
     
+    .join{
+        cursor: pointer;
+        
+        &:hover{
+            svg{
+                
+            }
+        }
+    }
 `;
 
 export const NoticiasList = styled.div`

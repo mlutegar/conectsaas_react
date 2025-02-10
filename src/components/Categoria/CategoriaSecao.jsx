@@ -3,7 +3,8 @@ import {CategoriaSecaoStyle, CategoriaTitle,CategoriaTitleDiv, Container, Contai
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
-import {Link} from "react-router-dom"; // Se estiver usando React Router
+import {Link} from "react-router-dom";
+import {SvgJoin} from "../Svgs/Svgs"; // Se estiver usando React Router
 
 const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     const [noticias, setNoticias] = useState([]);
@@ -56,6 +57,9 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
                             {categoriaNome.toUpperCase()}
                         </Link>
                     </CategoriaTitle>
+                    <div className={"join"}>
+                        <SvgJoin/>
+                    </div>
                 </CategoriaTitleDiv>
 
                 <NoticiasList>

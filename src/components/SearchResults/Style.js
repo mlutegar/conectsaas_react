@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
-    max-width: 800px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const SearchTitle = styled.h2`
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+
+    @media (max-width: 768px) {
+        margin-top: 50px;
+    }
 `;
 
 export const ResultsList = styled.div`

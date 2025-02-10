@@ -40,6 +40,11 @@ export const FormularioContainer = styled.form`
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+        width: auto;
+    }
 `;
 
 export const InputContainer = styled.div`
@@ -52,6 +57,7 @@ export const InputContainer = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
+        gap: 1rem;
     }
 `;
 
@@ -70,7 +76,7 @@ export const Label = styled.label`
 export const Input = styled.input`
     border: 0.5px solid #000;
     background: #FFF;
-    width: 100%;
+    width: 90%;
     padding: 0.5rem;
     font-size: 1rem;
     font-family: "Libre Franklin";

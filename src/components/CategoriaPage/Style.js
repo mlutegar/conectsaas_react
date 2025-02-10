@@ -16,7 +16,7 @@ export const Titulo = styled.div`
     @media screen {
         @media (max-width: 768px) {
             padding-left: 20px;
-            padding-top: 0;
+            padding-top: 40px;
         }
     }
 `;

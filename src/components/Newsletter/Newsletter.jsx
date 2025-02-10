@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NewsletterStyle, FormContainer, InputField, CheckboxContainer, Button, Container } from "./Style";
-import { SvgLogo } from "../Svgs/Svgs";
+import {SvgLogo, SvgLogoFooter, SvgLogoNewsletter} from "../Svgs/Svgs";
 import WordPressApi from "../../services/wordpressApi";
 
 const Newsletter = ({ darkMode = false }) => {
@@ -51,24 +51,27 @@ const Newsletter = ({ darkMode = false }) => {
     return (
         <NewsletterStyle darkMode={darkMode}>
             <Container darkMode={darkMode}>
-                <SvgLogo modo={"footer"} />
+                { darkMode ? <SvgLogoFooter/> : <SvgLogoNewsletter/> }
                 <h2>Fique atualizado com as principais novidades do mundo SaaS! Não perca nada!</h2>
 
                 <FormContainer onSubmit={handleSubmit}>
-                    <InputField
-                        type="text"
-                        placeholder="Nome completo"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                        required
-                    />
-                    <InputField
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                    <div className={"input-container"}>
+                        <InputField
+                            type="text"
+                            placeholder="Nome completo"
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                            required
+                        />
+                        <InputField
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
                     <CheckboxContainer>
                         <input
                             type="checkbox"

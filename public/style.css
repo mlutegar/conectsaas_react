@@ -25,7 +25,7 @@ body::before {
   height: 100%;
   background: url('imagens/fundo.png') no-repeat center center fixed;
   background-size: cover;
-  opacity: 0.3;
+  opacity: 0.7;
   z-index: -1;
 }
 
@@ -41,7 +41,7 @@ h2 {
 
 div.container {
   @media (max-width: 768px) {
-    padding: 5rem 0;
+    padding: 2.7rem 0;
   }
 }
 

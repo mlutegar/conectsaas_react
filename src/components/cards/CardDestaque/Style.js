@@ -11,7 +11,7 @@ export const CardContainer = styled.div`
 
     p {
         margin: 0;
-        display: inline;
+        display: flex;
     }
 
     &:hover {

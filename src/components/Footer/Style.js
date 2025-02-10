@@ -51,6 +51,35 @@ export const FooterSection = styled.div`
     }
 `;
 
+export const Logo = styled.div`
+    flex: 1;
+    margin: 10px;
+    svg{
+        cursor: pointer;
+    }
+
+    h4 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        border-bottom: 1px solid white;
+        padding-bottom: 5px;
+    }
+
+    a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        margin: 5px 0;
+        font-size: 14px;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+`;
+
 export const CategoriesGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -75,6 +104,10 @@ export const SocialIcons = styled.div`
 
         &:hover {
             color: #ffcc00;
+            
+            path{
+                fill: #ffcc00;
+            }
         }
     }
 `;

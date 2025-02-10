@@ -4,6 +4,10 @@ import {SidebarContainer} from "../Sidebar/Style";
 export const PostContainer = styled.div`
     max-width: 800px;
     flex: 2;
+
+    @media (max-width: 768px) {
+        padding: 25px 20px;
+    }
 `;
 
 export const PostTitle = styled.h1`
@@ -14,6 +18,15 @@ export const PostTitle = styled.h1`
     font-weight: 700;
     line-height: normal;
     text-align: left;
+
+    @media (max-width: 768px) {
+        color: #000;
+        font-family: "Libre Franklin";
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
 `;
 
 export const PostImage = styled.img`
@@ -47,15 +60,12 @@ export const PostContent = styled.div`
     /* Estiliza a primeira letra do primeiro parágrafo */
 
     .primeiro-paragrafo:first-of-type::first-letter {
-        height: 1rem;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #8b0000; /* Vermelho do site */
         float: left;
         margin-right: 10px;
-        color: #990A04;
-        font-family: "Libre Franklin";
-        font-size: 6rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 166.395%; /* 9.98375rem */    
+        line-height: 1;
     }
 `;
 
@@ -63,8 +73,7 @@ export const PostWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     max-width: 1440px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 30px auto 0;
     gap: 20px;
 
     @media (max-width: 768px) {
@@ -107,4 +116,12 @@ export const ShareButton = styled.a`
     align-items: center;
 
     margin: 1rem 0;
+
+    &:hover {
+        path {
+            fill: #8b0000;
+        }
+
+        color: #8b0000;
+    }
 `;

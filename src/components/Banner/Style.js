@@ -6,7 +6,7 @@ export const BannerContainer = styled.section`
     gap: 20px;
     padding: 20px 0;
     max-width: 1440px;
-    margin: auto;
+    margin: 40px auto 0;
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;

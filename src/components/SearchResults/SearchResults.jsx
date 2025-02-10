@@ -10,28 +10,40 @@ const SearchResults = () => {
     const [posts, setPosts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
+    const [categoryMap, setCategoryMap] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSearchResults = async () => {
             try {
-                // Buscar posts
+                console.log(`AnaliseAtual 🔍 Buscando resultados para: "${query}"`);
+
+                // 🔹 Buscar categorias e mapear ID → Nome
+                const allCategories = await WordPressApi.getCategories();
+                const categoryMap = allCategories.reduce((acc, category) => {
+                    acc[category.id] = category.name;
+                    return acc;
+                }, {});
+
+                setCategoryMap(categoryMap);
+                console.log("AnaliseAtual ✅ Mapeamento de categorias:", categoryMap);
+
+                // 🔹 Buscar posts
                 let postsData = await WordPressApi.search(query, "posts");
                 postsData = await WordPressApi.getPostsWithMedia(postsData);
 
-                // Buscar categorias pelo nome
-                const allCategories = await WordPressApi.getCategories();
+                // 🔹 Buscar categorias pelo nome
                 const matchedCategories = allCategories.filter(category =>
                     category.name.toLowerCase().includes(query.toLowerCase())
                 );
 
-                // Buscar autores pelo nome
+                // 🔹 Buscar autores pelo nome
                 const allAuthors = await WordPressApi.getUsers();
                 const matchedAuthors = allAuthors.filter(author =>
                     author.name.toLowerCase().includes(query.toLowerCase())
                 );
 
-                // Buscar posts dos autores encontrados
+                // 🔹 Buscar posts dos autores encontrados
                 let authorPosts = [];
                 for (const author of matchedAuthors) {
                     try {
@@ -43,7 +55,7 @@ const SearchResults = () => {
                     }
                 }
 
-                // Atualiza os estados
+                // 🔹 Atualiza os estados
                 setPosts([...postsData, ...authorPosts]); // Adiciona os posts dos autores
                 setCategories(matchedCategories);
                 setAuthors(matchedAuthors);
@@ -64,7 +76,7 @@ const SearchResults = () => {
 
     return (
         <SearchContainer>
-            <SearchTitle>Resultados para "{query}"</SearchTitle>
+            <SearchTitle>Resultados da pesquisa por: {query}</SearchTitle>
 
             {/* Resultados de Autores */}
             {authors.length > 0 && (
@@ -96,7 +108,11 @@ const SearchResults = () => {
                     <h2>Notícias</h2>
                     <ResultsList>
                         {posts.map((post) => (
-                            <CardDestaque key={post.id} post={post} />
+                            <CardDestaque
+                                key={post.id}
+                                post={post}
+                                catName={post.categories?.length > 0 ? categoryMap[post.categories[0]] : "Sem categoria"}
+                            />
                         ))}
                     </ResultsList>
                 </section>

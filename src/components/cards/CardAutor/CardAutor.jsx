@@ -21,6 +21,8 @@ const AuthorCard = styled.div`
     border-radius: 10px;
     text-align: center;
     transition: 0.3s;
+    width: 12.82094rem;
+    cursor: pointer;
 
     img {
         width: 80px;

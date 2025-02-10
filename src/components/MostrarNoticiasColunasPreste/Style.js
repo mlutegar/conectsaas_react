@@ -25,7 +25,6 @@ export const ColunaCategoria = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 2rem;
 `;
 
 export const CategoriaTitulo = styled.h2`
@@ -36,7 +35,6 @@ export const CategoriaTitulo = styled.h2`
     font-weight: 400;
     line-height: normal;
     text-transform: uppercase;
-    margin-top: 4.75rem;
     margin-bottom: 0;
 
     @media (max-width: 768px) {

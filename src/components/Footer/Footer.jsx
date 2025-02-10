@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FooterContainer, FooterContent, FooterSection, FooterBottom, CategoriesGrid, SocialIcons } from "./Style";
-import { SvgLogo } from "../Svgs/Svgs";
+import {FooterContainer, FooterContent, FooterSection, FooterBottom, CategoriesGrid, SocialIcons, Logo} from "./Style";
+import {SvgBisk, SvgLogo, SvgX} from "../Svgs/Svgs";
 import { FaTwitter, FaInstagram, FaLinkedin, FaBluetoothB } from "react-icons/fa";
 import WordPressApi from "../../services/wordpressApi";
 
@@ -25,9 +25,9 @@ const Footer = () => {
         <FooterContainer>
             <FooterContent>
                 {/* Logo */}
-                <FooterSection>
+                <Logo onClick={() => window.scrollTo(0, 0)}>
                     <SvgLogo />
-                </FooterSection>
+                </Logo>
 
                 {/* Categorias */}
                 <FooterSection>
@@ -45,14 +45,14 @@ const Footer = () => {
                 <FooterSection>
                     <h4>INSTITUCIONAL</h4>
                     <Link to="/fale-conosco">Fale conosco</Link>
-                    <Link to="/termos-de-uso">Termos de uso</Link>
+                    {/*<Link to="/termos-de-uso">Termos de uso</Link>*/}
                 </FooterSection>
 
                 {/* Redes Sociais */}
                 <FooterSection>
                     <SocialIcons>
-                        <a href="https://x.com/conectasaas" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                        <a href="https://bsky.app/profile/conectasaas.bsky.social" target="_blank" rel="noopener noreferrer"><FaBluetoothB /></a>
+                        <a href="https://x.com/conectasaas" target="_blank" rel="noopener noreferrer"><SvgX /></a>
+                        <a href="https://bsky.app/profile/conectasaas.bsky.social" target="_blank" rel="noopener noreferrer"><SvgBisk /></a>
                         <a href="https://www.instagram.com/conectasaas/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                         <a href="https://www.linkedin.com/company/conecta-saas" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                     </SocialIcons>
@@ -63,7 +63,7 @@ const Footer = () => {
             <FooterBottom>
                 <p>ConectaSaaS © 2025 Todos os direitos reservados.</p>
                 <Link to="/termos-de-uso">Termos de uso</Link>
-                <Link to="/politica-de-privacidade">Política de privacidade</Link>
+                {/*<Link to="/politica-de-privacidade">Política de privacidade</Link>*/}
             </FooterBottom>
         </FooterContainer>
     );

@@ -17,6 +17,7 @@ const PostPage = () => {
     const [post, setPost] = useState(null);
     const [author, setAuthor] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [categoryMap, setCategoryMap] = useState({}); // 🔹 Mapeamento de ID → Nome da Categoria
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -30,6 +31,18 @@ const PostPage = () => {
                     if (postData.author) {
                         const authorData = await WordPressApi.getUserBySlug(postData.author);
                         setAuthor(authorData);
+                    }
+
+                    // 🔹 Buscar categorias e mapear ID → Nome
+                    if (postData.categories?.length > 0) {
+                        const categories = await WordPressApi.getCategories();
+                        const categoryMap = categories.reduce((acc, category) => {
+                            acc[category.id] = category.name;
+                            return acc;
+                        }, {});
+
+                        setCategoryMap(categoryMap);
+                        console.log("AnaliseAtual ✅ Mapeamento de categorias:", categoryMap);
                     }
                 }
                 setLoading(false);
@@ -51,11 +64,15 @@ const PostPage = () => {
     const wordCount = post.content.rendered.replace(/<[^>]+>/g, "").split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / 200); // Média de leitura: 200 palavras por minuto
 
+    // 🔹 Pegando o nome da primeira categoria associada ao post
+    const postCategoryName = post.categories?.length > 0 ? categoryMap[post.categories[0]] : "Sem categoria";
+
     return (
         <>
             <PostWrapper>
                 <PostContainer>
-                    <ButtomCategory />
+                    {/* 🔹 Exibir o botão da categoria correta */}
+                    <ButtomCategory name={postCategoryName} />
 
                     {/* Título da Notícia */}
                     <PostTitle dangerouslySetInnerHTML={{ __html: post.title.rendered }} />

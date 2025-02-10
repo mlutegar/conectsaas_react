@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RelatedContainer = styled.div`
-    padding: 20px;
+    padding: 20px 0;
     margin: 40px 0;
     text-align: left;
     border-top: 2px solid black;

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const NewsletterStyle = styled.div`
-    background: ${(props) => (props.darkMode ? "#fff" : "#333")};
+    background: ${(props) => (props.darkMode ? "transparent" : "#333")};
     padding: 30px;
     text-align: center;
+    margin-top: 60px;
 `;
 
 export const Container = styled.div`
@@ -11,13 +12,13 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    max-width: 800px;
+    max-width: 1300px;
     margin: 0 auto;
     background: ${(props) => (props.darkMode ? "#333" : "#f8f8f8")};
     color: ${(props) => (props.darkMode ? "white" : "black")};
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     padding: 30px 0;
-    margin-top: 4.75rem;
+
     h2 {
         width: 80%;
         color: ${(props) => (props.darkMode ? "white" : "black")};
@@ -30,12 +31,24 @@ export const FormContainer = styled.form`
     align-items: center;
     gap: 20px;
     margin-top: 20px;
+    width: 100%;
 
-    @media screen {
-        @media (max-width: 768px) {
-            padding: 20px;
+    .input-container {
+        display: flex;
+        gap: 20px;
+        width: 65%;
+    }
+
+    @media (max-width: 768px) {
+        padding: 20px;
+
+
+        .input-container {
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            align-items: center;
         }
-        
     }
 `;
 
@@ -64,6 +77,10 @@ export const CheckboxContainer = styled.label`
         color: #8b0000;
         text-decoration: none;
         font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        padding: 0 30px;
     }
 `;
 
