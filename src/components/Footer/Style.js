@@ -65,6 +65,8 @@ export const SocialIcons = styled.div`
     display: flex;
     gap: 15px;
     margin-top: 10px;
+    flex-direction: row;
+    justify-content: center;
 
     a {
         color: white;
