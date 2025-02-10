@@ -42,6 +42,12 @@ export const Formulario = styled.form`
     .mensagem-container{
         width: 100%;
     }
+    
+    @media (max-width: 768px) {
+        .form-container {
+            flex-direction: column;
+        }
+    }
 `;
 
 export const Input = styled.input`
