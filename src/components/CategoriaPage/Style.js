@@ -11,6 +11,14 @@ export const Titulo = styled.div`
     font-weight: bold;
     margin-bottom: 20px;
     padding: 20px 0 0;
+    margin-top: 1.5rem;
+
+    @media screen {
+        @media (max-width: 768px) {
+            padding-left: 20px;
+            padding-top: 0;
+        }
+    }
 `;
 
 export const BannerContainer = styled.div`

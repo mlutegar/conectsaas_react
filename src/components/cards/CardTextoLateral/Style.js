@@ -87,6 +87,7 @@ export const CardTitle = styled.h3`
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        padding-top: 10px;
     }
 `;
 

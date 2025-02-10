@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {CategoryContainer, Titulo} from "./Style";
 import Banner from "../Banner/Banner";
 import WordPressApi from "../../services/wordpressApi";
-import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
+import CardTextoLateral from "../cards/CardTextoLateral/CardTextoLateral";
 import Sidebar from "../Sidebar/Sidebar";
 import {PostContainer, PostWrapper} from "../PostPage/Style";
 
@@ -56,7 +56,7 @@ const CategoryPage = () => {
             <PostWrapper>
                 <PostContainer>
                 {posts.slice(4).map((post) => (
-                    <CardPequenoBanner key={post.id} post={post} hideCategory={true}/>
+                    <CardTextoLateral key={post.id} post={post} hideCategory={true}/>
                 ))}
                 </PostContainer>
 

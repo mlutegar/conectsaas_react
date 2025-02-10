@@ -47,12 +47,15 @@ export const PostContent = styled.div`
     /* Estiliza a primeira letra do primeiro parágrafo */
 
     .primeiro-paragrafo:first-of-type::first-letter {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #8b0000; /* Vermelho do site */
+        height: 1rem;
         float: left;
         margin-right: 10px;
-        line-height: 1;
+        color: #990A04;
+        font-family: "Libre Franklin";
+        font-size: 6rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 166.395%; /* 9.98375rem */    
     }
 `;
 

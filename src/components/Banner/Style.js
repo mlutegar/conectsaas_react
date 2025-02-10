@@ -46,7 +46,7 @@ export const SidePosts = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 colunas */
     grid-template-rows: auto auto; /* 2 linhas */
-    gap: 15px;
+    gap: 3px;
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr; /* Apenas 1 coluna no mobile */
