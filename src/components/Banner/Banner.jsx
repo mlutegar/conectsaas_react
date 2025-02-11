@@ -131,7 +131,7 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
                         catName={
                             paginaCategoria
                                 ? categoriaData?.name // Se for na página de categoria, usa o nome correto
-                                : categoryMap[posts[0]?.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
+                                : categoryMap[post.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
                         } // Pega o nome da categoria pelo ID
                     />
                 ))}

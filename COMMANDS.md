@@ -17,3 +17,13 @@ Para rodar o projeto, use o comando:
 ```bash
 npm run start-windows
 ```
+
+Verificar as portas que estão sendo utilizadas:
+```bash
+netstat -ano | findstr :3000
+```
+
+Para finalizar a porta:
+```bash
+taskkill /F /PID 26920
+```
