@@ -5,10 +5,10 @@ export const CategoriaSecaoStyle = styled.div`
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
     padding: ${(props) => (props.fundoCinza ? "40px 0" : "0")};
     margin: 40px 0;
-
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
 
     @media (max-width: 768px) {
         padding: 0;
@@ -22,17 +22,19 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-export const ContainerNoticiasSecundarias = styled.div`
-`;
+export const ContainerNoticiasSecundarias = styled.div``;
 
 export const CategoriaTitle = styled.h2`
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
     font-family: "Didact Gothic";
     font-size: 1.5rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
     text-transform: uppercase;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+        color: ${(props) => (props.fundoCinza ? "#ffcc00" : "#990A04")};
+    }
 `;
 
 export const CategoriaTitleDiv = styled.div`
@@ -42,36 +44,41 @@ export const CategoriaTitleDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: border-bottom 0.3s ease-in-out;
 
     @media (max-width: 768px) {
         max-width: 90vw;
         overflow-x: hidden;
         margin: 19.920px 20px;
     }
-    
-    .join{
+
+    &:hover {
+        border-bottom: 1px solid ${(props) => (props.fundoCinza ? "#ffcc00" : "#990A04")};
+    }
+
+    .join {
         cursor: pointer;
-        
-        &:hover{
-            svg{
-                
-            }
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
         }
     }
 `;
 
 export const NoticiasList = styled.div`
     display: flex;
-    flex-wrap: nowrap; /* No desktop, mantém as notícias lado a lado */
+    flex-wrap: nowrap;
     gap: 20px;
-    overflow-x: auto; /* Se necessário, permite rolagem horizontal */
+    overflow-x: auto;
     padding-bottom: 10px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out forwards;
 
-    /* No mobile, empilha os cards verticalmente */
     @media (max-width: 768px) {
         flex-direction: column;
-        flex-wrap: wrap; /* Permite quebra de linha */
-        overflow-x: hidden; /* Remove rolagem horizontal */
+        flex-wrap: wrap;
+        overflow-x: hidden;
     }
 
     &::-webkit-scrollbar {
@@ -81,5 +88,16 @@ export const NoticiasList = styled.div`
     &::-webkit-scrollbar-thumb {
         background: #888;
         border-radius: 10px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 `;

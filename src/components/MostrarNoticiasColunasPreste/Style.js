@@ -7,6 +7,8 @@ export const Container = styled.div`
     max-width: 1440px;
     margin: auto;
     padding: 0 20px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out forwards;
 
     @media (max-width: 1200px) {
         grid-template-columns: repeat(2, 1fr);
@@ -19,23 +21,38 @@ export const Container = styled.div`
     @media (max-width: 768px) {
         padding: 0;
     }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 `;
 
 export const ColunaCategoria = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
 `;
 
 export const CategoriaTitulo = styled.h2`
     color: #000;
     font-family: "Didact Gothic";
     font-size: 1.5rem;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
     text-transform: uppercase;
     margin-bottom: 0;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+        color: #990A04;
+    }
 
     @media (max-width: 768px) {
         margin-left: 20px;
@@ -47,6 +64,11 @@ export const NoticiasSecundarias = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+
+    &:hover {
+        opacity: 0.9;
+    }
 
     @media (max-width: 768px) {
         padding: 0 20px;

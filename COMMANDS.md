@@ -5,7 +5,7 @@ git add .
 
 Para realizar o commit, use o comando:
 ```bash
-git commit -m "fix: adicionando redes sociais ao menu"
+git commit -m "feat: css na home"
 ```
 
 Para enviar as alterações para o repositório remoto, use o comando:
@@ -16,6 +16,16 @@ git push
 Para rodar o projeto, use o comando:
 ```bash
 npm run start-windows
+```
+
+Para criar build do projeto, use o comando:
+```bash
+npm run build
+```
+
+Para abrir o projeto no explorador de arquivos, use o comando:
+```bash
+explorer .
 ```
 
 Verificar as portas que estão sendo utilizadas:
