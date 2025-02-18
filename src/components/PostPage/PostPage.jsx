@@ -29,7 +29,7 @@ const PostPage = () => {
 
                     // 🔹 Buscar informações do autor
                     if (postData.author) {
-                        const authorData = await WordPressApi.getUserBySlug(postData.author);
+                        const authorData = await WordPressApi.getUserById(postData.author);
                         setAuthor(authorData);
                     }
 

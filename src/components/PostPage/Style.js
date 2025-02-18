@@ -4,6 +4,7 @@ import {SidebarContainer} from "../Sidebar/Style";
 export const PostContainer = styled.div`
     max-width: 800px;
     flex: 2;
+    padding-left: 15px;
 
     @media (max-width: 768px) {
         padding: 25px 20px;

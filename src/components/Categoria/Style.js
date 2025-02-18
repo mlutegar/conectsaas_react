@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CategoriaSecaoStyle = styled.div`
     background: ${(props) => (props.fundoCinza ? "#222" : "transparent")};
     color: ${(props) => (props.fundoCinza ? "white" : "black")};
-    padding: ${(props) => (props.fundoCinza ? "40px 0" : "0")};
+    padding: ${(props) => (props.fundoCinza ? "40px 15px" : "0 15px")};
     margin: 40px 0;
     display: flex;
     flex-direction: column;

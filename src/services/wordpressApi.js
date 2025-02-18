@@ -5,6 +5,11 @@ const API_BASE_URL = "https://api.conectasaas.com.br/wp-json/wp/v2";
 class WordPressApi {
     static isLoading = false; // 🔹 Controle do carregamento global
 
+    static async getUserById(id) {
+        const url = `${API_BASE_URL}/users/${id}`;
+        return await WordPressApi.fetchWithCache(url);
+    }
+
     static async fetchWithCache(url) {
         const cachedData = getCache(url);
         if (cachedData) {

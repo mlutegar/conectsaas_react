@@ -127,15 +127,6 @@ export const NewsBar = styled.div`
     position: relative;
     justify-content: center;
 
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 0.3125rem;
-        background: black;
-    }
-
     .categories-container {
         display: flex;
         gap: 20px;
