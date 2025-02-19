@@ -5,7 +5,7 @@ git add .
 
 Para realizar o commit, use o comando:
 ```bash
-git commit -m "feat: css na home"
+git commit -m "feat: ads"
 ```
 
 Para enviar as alterações para o repositório remoto, use o comando:
@@ -21,6 +21,11 @@ npm run start-windows
 Para criar build do projeto, use o comando:
 ```bash
 npm run build
+```
+
+Para abrir a pasta de build no explorador de arquivos, use o comando:
+```bash
+explorer build
 ```
 
 Para abrir o projeto no explorador de arquivos, use o comando:
