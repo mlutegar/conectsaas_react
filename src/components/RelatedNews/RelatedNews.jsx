@@ -5,6 +5,29 @@ import WordPressApi from "../../services/wordpressApi";
 
 const RelatedNews = ({ categoryId }) => {
     const [relatedPosts, setRelatedPosts] = useState([]);
+    const [categoryMap, setCategoryMap] = useState({});
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                console.log("AnaliseAtual 🔍 Buscando todas as categorias...");
+                const categories = await WordPressApi.getCategories();
+
+                const categoryMap = categories.reduce((acc, category) => {
+                    acc[category.id] = category.name; // Associa ID ao Nome da Categoria
+                    return acc;
+                }, {});
+
+                setCategoryMap(categoryMap);
+                console.log("AnaliseAtual ✅ Mapeamento de categorias criado:", categoryMap);
+            } catch (error) {
+                console.error("AnaliseAtual ❌ Erro ao buscar categorias:", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
 
     useEffect(() => {
         const fetchRelatedNews = async () => {
@@ -29,8 +52,13 @@ const RelatedNews = ({ categoryId }) => {
             <RelatedTitle>NOTÍCIAS RELACIONADAS</RelatedTitle>
             <RelatedList>
                 {relatedPosts.map((post) => (
-                    <CardSecundario key={post.id} post={post} />
+                    <CardSecundario
+                        key={post.id}
+                        post={post}
+                        catName={categoryMap[post.categories?.[0]]} // 🔹 Busca o nome da categoria correta
+                    />
                 ))}
+
             </RelatedList>
         </RelatedContainer>
     );

@@ -4,7 +4,7 @@ import { SvgRelogio } from "../../Svgs/Svgs";
 import { memo } from "react";
 import ButtomCategory from "../ButtomCategory/ButtomCategory";
 
-const CardSecundario = memo(({ post, modoEscuro = false, ocultarCategoria = false }) => {
+const CardSecundario = memo(({ post, modoEscuro = false, ocultarCategoria = false, catName }) => {
     return (
         <CardContainer modoEscuro={modoEscuro}>
             {/* Imagem do Post */}
@@ -15,7 +15,7 @@ const CardSecundario = memo(({ post, modoEscuro = false, ocultarCategoria = fals
             <CardContent>
                 {/* Renderiza a categoria apenas se ocultarCategoria for false */}
                 {!ocultarCategoria && (
-                <ButtomCategory modoEscuro={modoEscuro} name={post.categories[0]?.name} />
+                    <ButtomCategory modoEscuro={modoEscuro} name={catName} />
                 )}
 
                 {/* Título */}

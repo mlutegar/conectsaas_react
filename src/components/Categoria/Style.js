@@ -22,7 +22,9 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-export const ContainerNoticiasSecundarias = styled.div``;
+export const ContainerNoticiasSecundarias = styled.div`
+    max-width: 29.1875rem;
+`;
 
 export const CategoriaTitle = styled.h2`
     color: ${(props) => (props.fundoCinza ? "white" : "black")};

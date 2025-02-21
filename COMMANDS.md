@@ -5,7 +5,7 @@ git add .
 
 Para realizar o commit, use o comando:
 ```bash
-git commit -m "feat: ads"
+git commit -m "feat: corrigindo categoria"
 ```
 
 Para enviar as alterações para o repositório remoto, use o comando:

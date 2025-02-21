@@ -16,6 +16,7 @@ export const RelatedTitle = styled.h3`
 `;
 
 export const RelatedList = styled.div`
+    max-width: 15rem;
     display: flex;
     justify-content: space-between;
     gap: 20px;
