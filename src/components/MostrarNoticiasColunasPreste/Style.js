@@ -65,6 +65,7 @@ export const NoticiasSecundarias = styled.div`
     flex-direction: column;
     gap: 1rem;
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    padding-top: 6rem;
 
     &:hover {
         opacity: 0.9;

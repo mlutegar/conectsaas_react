@@ -1,5 +1,12 @@
 import {memo, useEffect, useState} from "react";
-import {CategoriaSecaoStyle, CategoriaTitle,CategoriaTitleDiv, Container, ContainerNoticiasSecundarias, NoticiasList} from "./Style";
+import {
+    CategoriaSecaoStyle,
+    CategoriaTitle,
+    CategoriaTitleDiv,
+    Container,
+    ContainerNoticiasSecundarias,
+    NoticiasList
+} from "./Style";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
 import CardSecundario from "../cards/CardSecundario/CardSecundario";
@@ -65,16 +72,30 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
                 <NoticiasList>
                     {noticias.map((post, index) =>
                         index === 0 ? (
-                            <CardPrimario key={post.id} post={post} modoEscuro={fundoCinza} primeiro={true}
-                                          ocultarCategoria={true} tipo={"categoria"}/>
+                            <CardPrimario
+                                key={post.id}
+                                post={post}
+                                modoEscuro={fundoCinza}
+                                primeiro={true}
+                                ocultarCategoria={true}
+                                tipo={"categoria"}
+                                className="noticia-grande"
+                            />
                         ) : (
                             <ContainerNoticiasSecundarias>
-                                <CardSecundario key={post.id} post={post} modoEscuro={fundoCinza}
-                                                ocultarCategoria={true}/>
+                                <CardSecundario
+                                    key={post.id}
+                                    post={post}
+                                    modoEscuro={fundoCinza}
+                                    ocultarCategoria={true}
+                                    className="noticia-secundaria"
+                                    tipo={"categoria"}
+                                />
                             </ContainerNoticiasSecundarias>
                         )
                     )}
                 </NoticiasList>
+
             </Container>
         </CategoriaSecaoStyle>
     );

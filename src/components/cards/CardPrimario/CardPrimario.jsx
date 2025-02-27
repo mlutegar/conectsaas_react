@@ -18,6 +18,7 @@ const CardPrimario = memo(({post, modoEscuro = false, primeiro = false, catName,
                     src={post.imageUrl}
                     alt={post.title.rendered}
                     primeiro={primeiro}
+                    tipo={tipo}
                 />
             </Link>
 

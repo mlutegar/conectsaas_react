@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BannerContainer = styled.section`
     display: grid;
     grid-template-areas: "principal principal secundarios secundarios";
-    gap: 20px;
+    gap: 2rem;
     padding: 20px 15px;
     max-width: 1440px;
     margin: 40px auto 0;
@@ -21,10 +21,16 @@ export const MainPost = styled.div`
     grid-area: principal;
     width: 100%;
     max-width: 44.9375rem;
+    display: flex;
+    flex-direction: column;
+
+    /* Ajusta a altura para ser igual à soma dos dois cards pequenos */
+    min-height: calc((16rem * 2) + 3px); /* 9.27rem é a altura dos cards pequenos + gap */
 
     img {
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
         border-radius: 8px;
     }
 
@@ -33,25 +39,34 @@ export const MainPost = styled.div`
         font-weight: bold;
         margin-top: 10px;
     }
-    
+
     @media (max-width: 768px) {
+        min-height: auto; /* Remove a restrição no mobile */
         img {
             border-radius: 0;
+            height: 15.625rem;
         }
     }
 `;
+
+
 
 export const SidePosts = styled.div`
     grid-area: secundarios;
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 colunas */
-    grid-template-rows: auto auto; /* 2 linhas */
-    gap: 3px;
+    grid-template-rows: 1fr 1fr; /* 2 linhas */
+    gap: 3px 17px;
+
+    /* Faz com que os cards pequenos se alinhem corretamente */
+    height: calc((16rem * 2) + 3px);
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr; /* Apenas 1 coluna no mobile */
         grid-template-rows: auto;
         padding: 0 20px;
+        height: auto;
+        gap: 3rem 17px;
     }
 `;
 

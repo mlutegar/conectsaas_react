@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
     display: flex;
-    flex-direction: column; /* Mantém a imagem em cima */
+    flex-direction: column;
     align-items: flex-start;
     border-radius: 8px;
-    overflow: hidden;
     transition: color 0.4s ease-in-out;
     max-width: 20.625rem;
+    height: 9.27rem; /* 🔹 Define altura fixa para os cards pequenos */
 
     &:hover {
         color: var(--primaria);
     }
 
-    a{
+    a {
         width: 100%;
     }
 
@@ -21,6 +21,7 @@ export const CardContainer = styled.div`
         flex-direction: column;
         align-items: center;
         max-width: 22.625rem;
+        height: auto;
     }
 `;
 
@@ -38,7 +39,7 @@ export const CardImage = styled.img`
 
     @media (max-width: 768px) {
         width: 100%;
-        height: 100%;
+        height: 9.993rem;
     }
 
     @media (max-width: 480px) {

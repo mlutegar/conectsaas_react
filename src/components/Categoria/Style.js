@@ -24,6 +24,13 @@ export const Container = styled.div`
 
 export const ContainerNoticiasSecundarias = styled.div`
     max-width: 29.1875rem;
+    width: calc(50% - 10px); /* Divide o espaço igualmente entre as colunas */
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 export const CategoriaTitle = styled.h2`

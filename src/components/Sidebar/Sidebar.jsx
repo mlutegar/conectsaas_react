@@ -73,7 +73,8 @@ const Sidebar = () => {
                         post={post}
                         imageUrl={post.imageUrl} // Agora a URL da imagem estará sempre definida corretamente
                         title={post.title.rendered}
-                        catName={categoryMap[post.categories?.[0]]} // 🔹 Busca o nome da categoria usando o mapa
+                        catName={categoryMap[post.categories?.[0]]}
+                        tipo={"sidebar"}
                     />
                 ))}
             </RecentPosts>

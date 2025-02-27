@@ -1,12 +1,26 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
+    height: 22rem;
     display: flex;
     flex-direction: column; /* Mantém a imagem em cima */
     align-items: flex-start;
     border-radius: 8px;
     overflow: hidden;
     transition: color 0.4s ease-in-out;
+
+    &.noticia-grande {
+        max-width: 100%; /* Garante que o CardPrimario tenha o mesmo tamanho da soma das duas colunas */
+    }
+
+    &.noticia-secundaria {
+        flex: 1; /* Faz com que os cards secundários ocupem metade do espaço */
+    }
+    
+    a{
+        overflow: hidden;
+        width: 100%;
+    }
 
     @media (max-width: 768px) {
         padding: 0 20px;
@@ -19,7 +33,7 @@ export const CardContainer = styled.div`
 
 export const CardImage = styled.img`
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 6px;
     object-fit: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
@@ -27,6 +41,10 @@ export const CardImage = styled.img`
 
     ${CardContainer}:hover & {
         filter: brightness(0.5) sepia(1) hue-rotate(-30deg);
+    }
+    
+    @media (max-width: 768px) {
+        height: 9.993rem;
     }
 `;
 
