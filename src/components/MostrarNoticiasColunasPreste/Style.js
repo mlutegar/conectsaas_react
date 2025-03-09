@@ -39,6 +39,18 @@ export const ColunaCategoria = styled.div`
     flex-direction: column;
     gap: 15px;
     transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+
+    .conteudo{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    @media (max-width: 768px) {
+        .conteudo{
+            gap: 8rem;
+        }
+    }
 `;
 
 export const CategoriaTitulo = styled.h2`

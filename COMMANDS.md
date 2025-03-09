@@ -1,3 +1,8 @@
+Para puxar as alterações do repositório remoto, use o comando:
+```bash
+git pull
+```
+
 Para adicionar as alterações ao commit, use o comando:
 ```bash
 git add .

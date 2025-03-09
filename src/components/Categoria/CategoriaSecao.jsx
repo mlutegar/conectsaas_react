@@ -5,7 +5,8 @@ import {
     CategoriaTitleDiv,
     Container,
     ContainerNoticiasSecundarias,
-    NoticiasList
+    NoticiasListDesktop,
+    NoticiasListMobile
 } from "./Style";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import WordPressApi from "../../services/wordpressApi";
@@ -69,7 +70,7 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
                     </div>
                 </CategoriaTitleDiv>
 
-                <NoticiasList>
+                <NoticiasListDesktop>
                     {noticias.map((post, index) =>
                         index === 0 ? (
                             <CardPrimario
@@ -94,8 +95,35 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
                             </ContainerNoticiasSecundarias>
                         )
                     )}
-                </NoticiasList>
+                </NoticiasListDesktop>
 
+                <NoticiasListMobile>
+                    {noticias.map((post, index) =>
+                        index === 0 ? (
+                            <CardPrimario
+                                key={post.id}
+                                post={post}
+                                modoEscuro={fundoCinza}
+                                primeiro={true}
+                                ocultarCategoria={true}
+                                tipo={"categoria"}
+                                className="noticia-grande"
+                            />
+                        ) : null )}
+                    <ContainerNoticiasSecundarias>
+                        {noticias.map((post, index) =>
+                            index !== 0 ? (
+                                <CardSecundario
+                                    key={post.id}
+                                    post={post}
+                                    modoEscuro={fundoCinza}
+                                    ocultarCategoria={true}
+                                    className="noticia-secundaria"
+                                    tipo={"categoria"}
+                                />
+                            ) : null )}
+                    </ContainerNoticiasSecundarias>
+                </NoticiasListMobile>
             </Container>
         </CategoriaSecaoStyle>
     );

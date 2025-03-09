@@ -24,6 +24,7 @@ export const CardContainer = styled.div`
 
     @media (max-width: 768px) {
         padding: 0 20px;
+        height: 16rem;
     }
 
     &:hover {

@@ -55,7 +55,7 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
         <ColunaCategoria>
             <CategoriaTitulo>{titulo}</CategoriaTitulo>
             {noticias[categoriaKey].length > 0 && (
-                <>
+                <div className={"conteudo"}>
                     {/* Passa a prop "catName" para o CardPrimario */}
                     <CardPrimario
                         post={noticias[categoriaKey][0]}
@@ -69,7 +69,7 @@ const MostrarNoticiasColunasPreste = ({ categoria1, categoria2, categoria3 }) =>
                             <CardDestaque key={post.id} post={post} ocultarCategoria={true}/>
                         ))}
                     </NoticiasSecundarias>
-                </>
+                </div>
             )}
         </ColunaCategoria>
     );

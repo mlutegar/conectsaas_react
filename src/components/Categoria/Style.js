@@ -75,7 +75,7 @@ export const CategoriaTitleDiv = styled.div`
     }
 `;
 
-export const NoticiasList = styled.div`
+export const NoticiasListDesktop = styled.div`
     display: flex;
     flex-wrap: nowrap;
     gap: 20px;
@@ -85,9 +85,45 @@ export const NoticiasList = styled.div`
     animation: fadeIn 0.6s ease-in-out forwards;
 
     @media (max-width: 768px) {
+        display: none;
+    }
+
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+
+export const NoticiasListMobile = styled.div`
+    display: none;
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out forwards;
+
+    @media (max-width: 768px) {
+        display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         overflow-x: hidden;
+        gap: 8rem;
     }
 
     &::-webkit-scrollbar {
