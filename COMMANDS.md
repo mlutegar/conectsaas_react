@@ -10,7 +10,7 @@ git add .
 
 Para realizar o commit, use o comando:
 ```bash
-git commit -m "feat: corrigindo mobile"
+git commit -m "feat: adicinando slider"
 ```
 
 Para enviar as alterações para o repositório remoto, use o comando:
@@ -47,3 +47,7 @@ Para finalizar a porta:
 ```bash
 taskkill /F /PID 26920
 ```
+
+Para instalar o swipper use
+npm install swiper
+npm install style-loader css-loader --save-dev

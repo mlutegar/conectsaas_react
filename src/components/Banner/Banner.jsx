@@ -1,10 +1,15 @@
-import { useEffect, useState, memo } from "react";
+import {useEffect, useState, memo} from "react";
 import CardPrimario from "../cards/CardPrimario/CardPrimario";
 import CardPequenoBanner from "../cards/CardPequenosBanner/CardPequenoBanner";
-import { BannerContainer, MainPost, SidePosts } from "./Style";
+import {BannerContainer, MainPost, SidePosts, BannerDesktop, BannerMobile} from "./Style";
+import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import {Navigation, Pagination} from "swiper/modules";
 import WordPressApi from "../../services/wordpressApi";
 
-const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
+const Banner = memo(({categoriaNome = null, paginaCategoria = false}) => {
     const [posts, setPosts] = useState([]);
     const [categoriaData, setCategoriaData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -70,7 +75,7 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
         const fetchPosts = async () => {
             try {
                 setLoading(true);
-                let params = { per_page: 5 };
+                let params = {per_page: 5};
 
                 if (categoriaData?.id) {
                     params.categories = categoriaData.id;
@@ -106,36 +111,93 @@ const Banner = memo(({ categoriaNome = null, paginaCategoria = false }) => {
 
     return (
         <BannerContainer>
-            {/* Post Principal */}
-            <MainPost>
-                <CardPrimario
-                    post={posts[0]}
-                    tamanhoMenor={true}
-                    catName={
-                        paginaCategoria
-                            ? categoriaData?.name // Se for na página de categoria, usa o nome correto
-                            : categoryMap[posts[0]?.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
-                    }
-                    primeiro={true}
-                    ocultarCategoria={paginaCategoria}
-                />
-            </MainPost>
-
-            {/* Posts Secundários - 2 colunas e 2 linhas */}
-            <SidePosts>
-                {posts.slice(1, 5).map((post) => (
-                    <CardPequenoBanner
-                        key={post.id}
-                        post={post}
-                        hideCategory={paginaCategoria}
+            <BannerDesktop>
+                <MainPost>
+                    <CardPrimario
+                        post={posts[0]}
+                        tamanhoMenor={true}
                         catName={
                             paginaCategoria
                                 ? categoriaData?.name // Se for na página de categoria, usa o nome correto
-                                : categoryMap[post.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
-                        } // Pega o nome da categoria pelo ID
+                                : categoryMap[posts[0]?.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
+                        }
+                        primeiro={true}
+                        ocultarCategoria={paginaCategoria}
                     />
-                ))}
-            </SidePosts>
+                </MainPost>
+
+                <SidePosts>
+                    {posts.slice(1, 5).map((post) => (
+                        <CardPequenoBanner
+                            key={post.id}
+                            post={post}
+                            hideCategory={paginaCategoria}
+                            catName={
+                                paginaCategoria
+                                    ? categoriaData?.name // Se for na página de categoria, usa o nome correto
+                                    : categoryMap[post.categories?.[0]] // Se estiver na home, pega o nome da primeira categoria
+                            } // Pega o nome da categoria pelo ID
+                        />
+                    ))}
+                </SidePosts>
+            </BannerDesktop>
+            <BannerMobile>
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    centeredSlides={true}
+                    loop={true}
+                    pagination={{clickable: true}} // Pontos de navegação abaixo dos slides
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                            centeredSlides: true
+                        },
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                            centeredSlides: true
+                        },
+                        640: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                            centeredSlides: true
+                        },
+                        768: {
+                            slidesPerView: 1.5,
+                            spaceBetween: 15,
+                            centeredSlides: true
+                        },
+                        1024: {
+                            slidesPerView: 3.5,
+                            spaceBetween: 40,
+                            centeredSlides: true
+                        },
+                        1441: {
+                            slidesPerView: 3,
+                            spaceBetween: 40,
+                            centeredSlides: true
+                        },
+                    }}
+                >
+                    {posts.slice(0, 5).map((post, index) => (
+                        <SwiperSlide key={index}>
+                            <CardPrimario
+                                key={post.id}
+                                post={post}
+                                tamanhoMenor={true}
+                                catName={
+                                    paginaCategoria
+                                        ? categoriaData?.name
+                                        : categoryMap[post.categories?.[0]]
+                                }
+                                primeiro={true}
+                                ocultarCategoria={paginaCategoria}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </BannerMobile>
         </BannerContainer>
     );
 });

@@ -12,6 +12,7 @@ export const CategoriaSecaoStyle = styled.div`
 
     @media (max-width: 768px) {
         padding: 0;
+        margin: 0 0;
     }
 `;
 

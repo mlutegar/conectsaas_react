@@ -68,7 +68,7 @@ export const CategoriaTitulo = styled.h2`
 
     @media (max-width: 768px) {
         margin-left: 20px;
-        margin-top: 0;
+        margin-top: 3rem;
     }
 `;
 

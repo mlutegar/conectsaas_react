@@ -1,19 +1,40 @@
 import styled from "styled-components";
 
 export const BannerContainer = styled.section`
-    display: grid;
-    grid-template-areas: "principal principal secundarios secundarios";
-    gap: 2rem;
     padding: 20px 15px;
     max-width: 1440px;
     margin: 40px auto 0;
 
     @media (max-width: 768px) {
+        padding: 0;
+    }
+`;
+
+export const BannerMobile = styled.div`
+    display: none;
+    height: 26rem;
+
+    span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background: #8b0000;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+`;
+
+export const BannerDesktop = styled.div`
+    display: grid;
+    grid-template-areas: "principal principal secundarios secundarios";
+    gap: 2rem;
+    
+    @media (max-width: 768px) {
+        display: none;
         grid-template-columns: 1fr;
         grid-template-areas:
       "principal"
       "secundarios";
-        padding: 0;
     }
 `;
 
@@ -48,7 +69,6 @@ export const MainPost = styled.div`
         }
     }
 `;
-
 
 
 export const SidePosts = styled.div`

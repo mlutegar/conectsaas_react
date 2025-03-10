@@ -110,7 +110,6 @@ export const ComentariosList = styled.div`
     margin-top: 1.5rem;
 `;
 
-/* Layout do Formulário */
 export const FormContainer = styled.div`
     display: flex;
     gap: 1rem;

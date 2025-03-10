@@ -32,6 +32,7 @@ export const CardImage = styled.img`
     object-fit: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
     transition: filter 0.4s ease-in-out;
+    background: white;
 
     ${CardContainer}:hover & {
         filter: brightness(0.5) sepia(1) hue-rotate(-30deg);

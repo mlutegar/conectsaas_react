@@ -42,6 +42,7 @@ export const CardImage = styled.img`
 
     @media (max-width: 768px) {
         border-radius: ${({primeiro}) => (primeiro ? "0" : "0.625rem")};
+        height: 16rem;
     }
 
     ${CardContainer}:hover & {

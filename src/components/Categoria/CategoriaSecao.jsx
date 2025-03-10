@@ -58,7 +58,6 @@ const CategoriaSecao = memo(({categoriaNome, fundoCinza = false}) => {
     return (
         <CategoriaSecaoStyle fundoCinza={fundoCinza}>
             <Container>
-
                 <CategoriaTitleDiv>
                     <CategoriaTitle fundoCinza={fundoCinza}>
                         <Link to={`/categoria/${categoriaNome}`} style={{textDecoration: 'none', color: 'inherit'}}>
